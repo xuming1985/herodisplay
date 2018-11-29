@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace GameDisplay.Domain
 {
     /// <summary>
-    /// 铭文
+    /// 装备
     /// </summary>
     [Table("Equipment")]
     public class Equipment
