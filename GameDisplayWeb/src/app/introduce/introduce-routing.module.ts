@@ -12,9 +12,9 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'hero', component: HeroComponent },
-  { path: 'Summoner', component: SummonerComponent },
-  { path: 'Inscription', component: InscriptionComponent},
-  { path: 'Equipment', component: EquipmentComponent}
+  { path: 'summoner', component: SummonerComponent },
+  { path: 'inscription', component: InscriptionComponent},
+  { path: 'equipment', component: EquipmentComponent}
 ]
 
 @NgModule({

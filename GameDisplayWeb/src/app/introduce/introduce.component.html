@@ -1,4 +1,23 @@
-<p>
-  introduce works!
-  <router-outlet></router-outlet>
-</p>
+
+<div class="page-bar">
+  <ul class="page-breadcrumb">
+    <li>
+        <a routerLink="/introduce" >Home</a>
+        <i class="fa fa-circle"></i>
+    </li>
+    <li>
+        <span>游戏资料</span>
+    </li>
+</ul>
+</div>
+
+<h1 class="herolist-title">英雄介绍</h1>
+
+<ul class="herolist-nav">
+  <li><a routerLink="/introduce/hero">英雄</a></li>
+  <li><a routerLink="/introduce/equipment">局内道具</a></li>
+  <li><a routerLink="/introduce/summoner">召唤师技能</a></li>
+  <li><a routerLink="/introduce/inscription">铭文</a></li>
+</ul>
+
+<router-outlet></router-outlet>
