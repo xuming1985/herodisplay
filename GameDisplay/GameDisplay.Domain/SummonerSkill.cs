@@ -22,7 +22,6 @@ namespace GameDisplay.Domain
         //描述
         public string Description { get; set; }
 
-
         public int Index { get; set; }
     }
 }
