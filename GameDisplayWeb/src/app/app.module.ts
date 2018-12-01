@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module'
+import { HttpClientModule }    from '@angular/common/http';
+import { ServiceProxyModule } from './shared/service-proxy/service-proxy.module'
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
@@ -20,7 +22,9 @@ import { IntroduceComponent } from './introduce/introduce.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ServiceProxyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

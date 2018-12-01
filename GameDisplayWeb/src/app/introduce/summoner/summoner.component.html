@@ -1,3 +1,18 @@
-<p>
-  summoner works!
-</p>
+<div class="herolist-box">
+  <div class="clearfix herolist-types item-types">
+    <ul id="spellList" class="imgtextlist spell-list">
+      <li *ngFor="let summoner of summoners" [class.current]="summoner === selectedSummoner" (click)="selectSummoner(summoner)">
+        <img [src]="summoner.Thumbnail">
+        <p>{{summoner.SkillName}}</p>
+      </li>
+    </ul>
+    <div id="spellDefail" class="spell-defail">
+      <div class="spell-title" *ngIf="selectedSummoner">
+        <img [src]="selectedSummoner.DisplayImage">
+        <h4>{{selectedSummoner.SkillName}}</h4>
+        <p class="cons">{{selectedSummoner.Condition}}</p>
+      </div>
+      <div class="spell-desc"  *ngIf="selectedSummoner">{{selectedSummoner.Description}}</div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SummonerService, Summoner } from '../../shared/service-proxy/summoner.service'
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-summoner',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummonerComponent implements OnInit {
 
-  constructor() { }
+  summoners: Summoner[] = [];
+  selectedSummoner: Summoner = null;
 
-  ngOnInit() {
+  constructor(private service: SummonerService) {
+
   }
 
+  ngOnInit() {
+    this.getSummoners();
+  }
+
+  getSummoners(): void {
+    this.service.getAll()
+      .subscribe(summoners => {
+        this.summoners = summoners;
+        this.selectedSummoner = summoners[0];
+      })
+  }
+
+  selectSummoner(current: Summoner):void{
+    this.selectedSummoner = current;
+  }
 }
