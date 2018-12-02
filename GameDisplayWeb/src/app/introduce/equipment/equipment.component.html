@@ -1,3 +1,40 @@
-<p>
-  equipment works!
-</p>
+<div class="herolist-box">
+  <div class="clearfix herolist-types">
+    <ul class="clearfix types-ms sub-type">
+      <li *ngFor="let catetory of categories" [class.current]="catetory === selectedCategory" style="display: block;"
+        (click)="selectCategory(catetory)">
+        <span class="ms-radio"><i class="i"></i></span>
+        <label>{{catetory.name}}</label>
+      </li>
+    </ul>
+  </div>
+  <div class="herolist-content">
+    <ul class="clearfix herolist">
+      <li *ngFor="let equipment of equipmentsFilter" (mouseover)="equipmentOnMouseOver(equipment,$event)" (mouseout)="equipmentOnMouseOut()" (mousemove)="equipmentOnMouseMove($event)">
+        <a href="#none">
+          <img [src]="equipment.Thumbnail" width="91" height="91">{{equipment.Name}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="popPupItem" class="poppup-item" *ngIf="selectedEquipment" [style.display]="showPopItem ? 'block' : 'none'" [style.left]="pop_left" [style.top]="pop_top">
+  <div id="itemFromTop">
+    <div class="item-title clearfix">
+      <img [src]="selectedEquipment.Thumbnail">
+      <div class="cons">
+        <h4 id="Jname">{{selectedEquipment.Name}}</h4>
+        <p id="Jprice">售价：{{selectedEquipment.SellPrice}}</p>
+        <p id="Jtprice">总价：{{selectedEquipment.BuyPrice}}</p>
+      </div>
+    </div>
+    <div class="item-desc">
+      <div id="Jitem-desc1">
+        <p>{{selectedEquipment.Desc1}}</p>
+      </div>
+      <div id="Jitem-desc2">
+        <p>{{selectedEquipment.Desc2}}</p>
+      </div>
+    </div>
+  </div>
+</div>

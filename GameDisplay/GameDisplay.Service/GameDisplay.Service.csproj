@@ -59,9 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InitService.cs" />
-    <Compile Include="EquipmentService.cs" />
-    <Compile Include="SummonerSkillService.cs" />
-    <Compile Include="HeroService.cs" />
+    <Compile Include="kinghonour\EquipmentService.cs" />
+    <Compile Include="kinghonour\SummonerSkillService.cs" />
+    <Compile Include="kinghonour\HeroService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

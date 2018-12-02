@@ -5,7 +5,7 @@ using System.Web.Http;
 
 namespace GameDisplay.App.Controllers
 {
-    public class EqyupmentController : ApiController
+    public class EquipmentController : ApiController
     {
         // GET: api/Hero
         public IEnumerable<Equipment> Get()

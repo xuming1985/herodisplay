@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+a {
+    text-decoration: none;
+    color: #363636;
+}
+
 ul, ol{
     list-style:none;
     display: block;
@@ -8,3 +13,35 @@ ul, ol{
     margin-inline-end: 0px;
     padding-inline-start: 40px;
 }
+
+.herolist-box {
+    margin-bottom: 50px;
+    padding: 35px 28px;
+    border: 2px solid #E8E8E8;
+    position: relative;
+}
+
+.herolist-content {
+    margin-top: 40px;
+}
+
+.herolist-content li {
+    float: left;
+    width: 87px;
+    margin-bottom: 34px;
+    margin-right: 30px;
+}
+
+.herolist-content a {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.herolist-content img {
+    width: 83px;
+    height: 83px;
+    border: 2px solid #258DF2;
+    border-radius: 10px 0 10px 0;
+}
+

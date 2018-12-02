@@ -12,8 +12,7 @@ const httpOptions = {
 export class SummonerService {
 
   private baseUrl: string;
-  protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
-
+  
   constructor(private http: HttpClient) {
     this.http = http;
     this.baseUrl = AppConsts.appBaseUrl;
