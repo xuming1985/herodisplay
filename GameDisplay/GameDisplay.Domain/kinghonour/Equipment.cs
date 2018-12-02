@@ -22,8 +22,14 @@ namespace GameDisplay.Domain
         //技能图标
         public string Thumbnail { get; set; }
 
+        public int BuyPrice { get; set; }
+
+        public int SellPrice { get; set; }
+
         //描述
-        public string Description { get; set; }
+        public string Desc1 { get; set; }
+
+        public string Desc2 { get; set; }
 
         public int Index { get; set; }
     }
