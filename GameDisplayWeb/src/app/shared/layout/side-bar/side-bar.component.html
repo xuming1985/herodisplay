@@ -31,10 +31,24 @@
               </a>
           </li>
           <li class="nav-item  ">
-            <a class="nav-link nav-toggle">
-                <i class="icon-settings"></i>
-                <span class="title">股票</span>
-            </a>
+                <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-diamond"></i>
+                        <span class="title">股票</span>
+                        <span class="selected"></span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                      <li class="nav-item  ">
+                          <a routerLink="/stock/quotation" class="nav-link ">
+                              <span class="title">行情</span>
+                          </a>
+                      </li>
+                      <li class="nav-item  ">
+                            <a routerLink="/stock/monitor" class="nav-link ">
+                                <span class="title">自选</span>
+                            </a>
+                        </li>
+                    </ul>
         </li>
       </ul>
   </div>

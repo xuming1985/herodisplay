@@ -75,6 +75,7 @@
     <Compile Include="kinghonour\HeroVideo.cs" />
     <Compile Include="kinghonour\HeroSkin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="stock\StockMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

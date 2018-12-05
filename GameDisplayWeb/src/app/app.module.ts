@@ -10,6 +10,7 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { SideBarComponent } from './shared/layout/side-bar/side-bar.component';
 import { PortalComponent } from './portal/portal.component';
 import { IntroduceComponent } from './introduce/introduce.component';
+import { StockComponent } from './stock/stock.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { IntroduceComponent } from './introduce/introduce.component';
     HeaderComponent,
     SideBarComponent,
     PortalComponent,
-    IntroduceComponent
+    IntroduceComponent,
+    StockComponent
   ],
   imports: [
     BrowserModule,

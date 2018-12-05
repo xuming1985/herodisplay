@@ -5,6 +5,8 @@ namespace GameDisplay.Domain
 {
     public  class GameDataContext: DbContext
     {
+        #region 王者荣耀
+
         public DbSet<Hero> Heroes { get; set; }
         public DbSet<HeroSkin> HeroSkins { get; set; }
         public DbSet<HeroSkill> HeroSkills { get; set; }
@@ -15,6 +17,14 @@ namespace GameDisplay.Domain
         public DbSet<SummonerSkill> SummonerSkills { get; set; }
         public DbSet<Inscription> Inscriptions { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
+
+        #endregion
+
+        #region 股票
+        //我得自选
+        public DbSet<StockMonitor> StockMonitors { get; set; }
+
+        #endregion
 
         public GameDataContext()
             : base("SqliteConnection")
