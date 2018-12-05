@@ -57,14 +57,14 @@ export class EquipmentService {
 }
 
 export class Equipment {
-  Id: number;
-  Category: number;
-  Name: string;
-  Thumbnail: string;
-  BuyPrice: number;
-  SellPrice: number;
-  Desc1: string;
-  Desc2: string;
+  id: number;
+  category: number;
+  name: string;
+  thumbnail: string;
+  buyPrice: number;
+  sellPrice: number;
+  desc1: string;
+  desc2: string;
 }
 
 export class EquipmentCategory {

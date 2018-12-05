@@ -13,9 +13,38 @@
       <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
         <i class="icon-wrench"></i>
       </a>
-      <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-        <i class="icon-trash"></i>
-      </a>
+      
     </div>
   </div>
-</div>>
+  <div class="portlet-body">
+    <div class="table-scrollable">
+      <table class="table table-bordered table-striped">
+          <thead>
+              <tr>
+                  <th style="width:50px"> # </th>
+                  <th> 股票 </th>
+                  <th> 代号 </th>
+                  <th> 最新价 </th>
+                  <th> 涨跌额 </th>
+                  <th> 涨跌幅 </th>
+                  <th style="width:200px"> 操作 </th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let monitor of stockMonitors">
+              <td>{{monitor.category}}</td>
+              <td>{{monitor.name}}</td>
+              <td>{{monitor.code}}</td>
+              <td>{{monitor.currentPrice}}</td>
+              <td [ngClass]="{'red': monitor.floatingPrice<0, 'green': monitor.floatingPrice>0}">{{monitor.floatingPrice}}</td>
+              <td [ngClass]="{'red': monitor.floatingPrice<0, 'green': monitor.floatingPrice>0}">{{monitor.floatingRate}}</td>
+              <td style="padding:5px 10px">
+                  <button type="button" class="btn btn-link btn-outline btn-xs"><i class="fa fa-eye"></i>详细</button>
+                  <button type="button" class="btn btn-link btn-outline btn-xs"><i class="fa fa-remove"></i>移除</button>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</div>

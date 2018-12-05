@@ -2,17 +2,17 @@
   <div class="clearfix herolist-types item-types">
     <ul id="spellList" class="imgtextlist spell-list">
       <li *ngFor="let summoner of summoners" [class.current]="summoner === selectedSummoner" (click)="selectSummoner(summoner)">
-        <img [src]="summoner.Thumbnail">
-        <p>{{summoner.SkillName}}</p>
+        <img [src]="summoner.thumbnail">
+        <p>{{summoner.skillName}}</p>
       </li>
     </ul>
     <div id="spellDefail" class="spell-defail">
       <div class="spell-title" *ngIf="selectedSummoner">
-        <img [src]="selectedSummoner.DisplayImage">
-        <h4>{{selectedSummoner.SkillName}}</h4>
-        <p class="cons">{{selectedSummoner.Condition}}</p>
+        <img [src]="selectedSummoner.displayImage">
+        <h4>{{selectedSummoner.skillName}}</h4>
+        <p class="cons">{{selectedSummoner.condition}}</p>
       </div>
-      <div class="spell-desc"  *ngIf="selectedSummoner">{{selectedSummoner.Description}}</div>
+      <div class="spell-desc"  *ngIf="selectedSummoner">{{selectedSummoner.description}}</div>
     </div>
   </div>
 </div>

@@ -1,10 +1,6 @@
-﻿using GameDisplay.Domain;
+﻿using GameDisplay.Dto;
 using GameDisplay.Service;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace GameDisplay.App.Controllers
@@ -12,16 +8,17 @@ namespace GameDisplay.App.Controllers
     public class StockMonitorController : ApiController
     {
         // GET: api/Hero
-        public IEnumerable<StockMonitor> Get()
+        public IEnumerable<StockMonitorDto> Get()
         {
             StockMonitorService service = new StockMonitorService();
             return service.GetAll();
         }
 
         // GET: api/Hero/5
-        public string Get(int id)
+        public StockMonitorDto Get(string code)
         {
-            return "value";
+            StockMonitorService service = new StockMonitorService();
+            return service.GetDetail(code);
         }
 
         // POST: api/Hero

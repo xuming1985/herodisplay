@@ -38,7 +38,7 @@ export class EquipmentComponent implements OnInit {
     this.equipmentsFilter = [];
     if (current.id > 0) {
       for (let index = 0; index < this.equipments.length; index++) {
-        if (this.equipments[index].Category == current.id)
+        if (this.equipments[index].category == current.id)
           this.equipmentsFilter.push(this.equipments[index]);
       }
     } else {

@@ -44,21 +44,10 @@ private handleError<T> (operation = 'operation', result?: T) {
 }
 
 export class Summoner {
-  Id: number;
-  SkillName: string;
-  Thumbnail: string;
-  DisplayImage: string;
-  Condition: string;
-  Description: string;
-
-  init(data?: any) {
-    if (data) {
-      this.Id = data["Id"];
-      this.SkillName = data["SkillName"];
-      this.Thumbnail = data["Thumbnail"];
-      this.DisplayImage = data["DisplayImage"];
-      this.Condition = data["Condition"];
-      this.Description = data["Description"];
-    }
-  }
+  id: number;
+  skillName: string;
+  thumbnail: string;
+  displayImage: string;
+  condition: string;
+  description: string;
 }

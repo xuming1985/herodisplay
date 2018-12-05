@@ -13,20 +13,9 @@ namespace GameDisplay.Domain
 
         public string Code { get; set; }
 
-        public string Category2 { get; set; }
+        public string Category { get; set; }
 
-        //生存能力
-        public int Viability { get; set; }
-
-        //攻击能力
-        public int AttackAbility { get; set; }
-
-        //技能效果
-        public int SkillEffect { get; set; }
-
-        //使用难度
-        public int Difficulty { get; set; }
-
-
+        //顺序
+        public int Index { get; set; }
     }
 }

@@ -12,7 +12,7 @@
     <ul class="clearfix herolist">
       <li *ngFor="let equipment of equipmentsFilter" (mouseover)="equipmentOnMouseOver(equipment,$event)" (mouseout)="equipmentOnMouseOut()" (mousemove)="equipmentOnMouseMove($event)">
         <a href="#none">
-          <img [src]="equipment.Thumbnail" width="91" height="91">{{equipment.Name}}
+          <img [src]="equipment.thumbnail" width="91" height="91">{{equipment.name}}
         </a>
       </li>
     </ul>
@@ -21,19 +21,19 @@
 <div id="popPupItem" class="poppup-item" *ngIf="selectedEquipment" [style.display]="showPopItem ? 'block' : 'none'" [style.left]="pop_left" [style.top]="pop_top">
   <div id="itemFromTop">
     <div class="item-title clearfix">
-      <img [src]="selectedEquipment.Thumbnail">
+      <img [src]="selectedEquipment.thumbnail">
       <div class="cons">
-        <h4 id="Jname">{{selectedEquipment.Name}}</h4>
-        <p id="Jprice">售价：{{selectedEquipment.SellPrice}}</p>
-        <p id="Jtprice">总价：{{selectedEquipment.BuyPrice}}</p>
+        <h4 id="Jname">{{selectedEquipment.name}}</h4>
+        <p id="Jprice">售价：{{selectedEquipment.sellPrice}}</p>
+        <p id="Jtprice">总价：{{selectedEquipment.buyPrice}}</p>
       </div>
     </div>
     <div class="item-desc">
       <div id="Jitem-desc1">
-        <p>{{selectedEquipment.Desc1}}</p>
+        <p>{{selectedEquipment.desc1}}</p>
       </div>
       <div id="Jitem-desc2">
-        <p>{{selectedEquipment.Desc2}}</p>
+        <p>{{selectedEquipment.desc2}}</p>
       </div>
     </div>
   </div>

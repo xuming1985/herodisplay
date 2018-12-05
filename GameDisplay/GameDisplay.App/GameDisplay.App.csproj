@@ -305,6 +305,10 @@
       <Project>{4c5f0891-27d8-4c95-bf88-fb24c6097635}</Project>
       <Name>GameDisplay.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GameDisplay.Dto\GameDisplay.Dto.csproj">
+      <Project>{5e95da7e-4a07-4966-9e50-ef19402a09a9}</Project>
+      <Name>GameDisplay.Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameDisplay.Service\GameDisplay.Service.csproj">
       <Project>{aabe403d-82fd-452e-a6f7-200639bda610}</Project>
       <Name>GameDisplay.Service</Name>
