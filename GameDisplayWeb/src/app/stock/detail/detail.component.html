@@ -1,3 +1,16 @@
-<p>
-  detail works!
-</p>
+<div class="btn-group space-top-10">
+    <button type="button" class="btn btn-default">
+        <i class="fa fa-bullhorn"></i> 分时
+    </button>
+    <button type="button" class="btn btn-default">
+        <i class="fa fa-bullhorn"></i> 日线
+    </button>
+    <button type="button" class="btn btn-default">
+        <i class="fa fa-bullhorn"></i> 周线
+    </button>
+    <button type="button" class="btn btn-default">
+        <i class="fa fa-bullhorn"></i> 月线
+    </button>
+</div>
+
+<div echarts [options]="chartOption" class="demo-chart"></div>

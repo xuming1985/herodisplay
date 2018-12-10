@@ -5,9 +5,11 @@ using System.Web.Http;
 
 namespace GameDisplay.App.Controllers
 {
+    [RoutePrefix("api/StockMonitor")]
     public class StockMonitorController : ApiController
     {
         // GET: api/Hero
+        [HttpGet]
         public IEnumerable<StockMonitorDto> Get()
         {
             StockMonitorService service = new StockMonitorService();
@@ -15,10 +17,20 @@ namespace GameDisplay.App.Controllers
         }
 
         // GET: api/Hero/5
+        [HttpGet]
+        [Route("{code}")]
         public StockMonitorDto Get(string code)
         {
             StockMonitorService service = new StockMonitorService();
             return service.GetDetail(code);
+        }
+
+        [HttpGet]
+        [Route("TimeDiagram/{code}")]
+        public TimeDiagramDto TimeDiagram(string code)
+        {
+            StockMonitorService service = new StockMonitorService();
+            return service.GetTimeDiagram(code);
         }
 
         // POST: api/Hero

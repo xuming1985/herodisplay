@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   { path: 'monitor', component: MonitorComponent },
   { path: 'quotation', component: QuotationComponent },
-  { path: 'detail', component: DetailComponent }
+  { path: 'detail/:code', component: DetailComponent }
 ]
 
 @NgModule({

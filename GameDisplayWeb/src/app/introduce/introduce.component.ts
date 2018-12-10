@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IntroduceComponent implements OnInit {
 
-  submenu: number = 1;
+  submenu: number = 2;
 
   constructor() { }
 

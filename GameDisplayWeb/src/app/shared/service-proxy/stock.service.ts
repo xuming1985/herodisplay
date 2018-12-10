@@ -26,7 +26,24 @@ export class StockService {
       tap(summoners => console.log("get all summoner")),
       catchError(this.handleError<StockMonitor[]>("getAll StockMonitor", []))
     );
+  }
 
+  getDetail(code: string): Observable<StockMonitor> {
+    let url = this.baseUrl + "/api/StockMonitor/" + code;
+
+    return this.http.get<StockMonitor>(url).pipe(
+      tap(item => console.log("get one stock")),
+      catchError(this.handleError<StockMonitor>("get detail stock"))
+    );
+  }
+
+  getTimeDiagram(code: string): Observable<TimeDiagram> {
+    let url = this.baseUrl + "/api/stockmonitor/TimeDiagram/" + code;
+
+    return this.http.get<TimeDiagram>(url).pipe(
+      tap(obj => console.log("getTimeDiagram")),
+      catchError(this.handleError<TimeDiagram>("getTimeDiagram"))
+    );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -51,4 +68,12 @@ export class StockMonitor {
   currentPrice: number;
   floatingPrice: number;
   floatingRate: number;
+  yestodayClosePrice: number;
+  openPrice: number;
+}
+
+export class TimeDiagram {
+  minValue: number;
+  maxValue: number;
+  values: number[];
 }

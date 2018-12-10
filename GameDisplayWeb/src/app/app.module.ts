@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module'
 import { HttpClientModule }    from '@angular/common/http';
 import { ServiceProxyModule } from './shared/service-proxy/service-proxy.module'
+import { NgxEchartsModule } from 'ngx-echarts';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
@@ -26,7 +27,8 @@ import { StockComponent } from './stock/stock.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ServiceProxyModule
+    ServiceProxyModule,
+    NgxEchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

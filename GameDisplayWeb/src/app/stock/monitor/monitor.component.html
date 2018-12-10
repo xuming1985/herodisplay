@@ -27,19 +27,18 @@
                   <th> 最新价 </th>
                   <th> 涨跌额 </th>
                   <th> 涨跌幅 </th>
-                  <th style="width:200px"> 操作 </th>
+                  <th style="width:100px"> 操作 </th>
               </tr>
           </thead>
           <tbody>
             <tr *ngFor="let monitor of stockMonitors">
               <td>{{monitor.category}}</td>
-              <td>{{monitor.name}}</td>
-              <td>{{monitor.code}}</td>
+              <td><a routerLink="/stock/detail/{{monitor.category + monitor.code}}">{{monitor.name}}</a></td>
+              <td><a (click)="routeToDetail(monitor)">{{monitor.code}}</a></td>
               <td>{{monitor.currentPrice}}</td>
               <td [ngClass]="{'red': monitor.floatingPrice<0, 'green': monitor.floatingPrice>0}">{{monitor.floatingPrice}}</td>
               <td [ngClass]="{'red': monitor.floatingPrice<0, 'green': monitor.floatingPrice>0}">{{monitor.floatingRate}}</td>
               <td style="padding:5px 10px">
-                  <button type="button" class="btn btn-link btn-outline btn-xs"><i class="fa fa-eye"></i>详细</button>
                   <button type="button" class="btn btn-link btn-outline btn-xs"><i class="fa fa-remove"></i>移除</button>
               </td>
             </tr>

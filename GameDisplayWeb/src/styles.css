@@ -14,11 +14,29 @@ ul, ol{
     padding-inline-start: 40px;
 }
 
+body, dl, dd, ul, ol, h1, h2, h3, h4, h5, h6, p, form {
+    margin: 0;
+}
+
+h4 {
+    display: block;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.space-top-10{
+    margin-top: 10px;
+}
+
 .herolist-box {
     margin-bottom: 50px;
     padding: 35px 28px;
-    border: 2px solid #E8E8E8;
+    border: 1px solid #E8E8E8;
     position: relative;
+    border-top-width: 0px !important;
 }
 
 .herolist-content {
@@ -44,4 +62,3 @@ ul, ol{
     border: 2px solid #258DF2;
     border-radius: 10px 0 10px 0;
 }
-

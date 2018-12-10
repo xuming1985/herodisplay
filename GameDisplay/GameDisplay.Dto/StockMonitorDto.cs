@@ -22,6 +22,11 @@ namespace GameDisplay.Dto
         //涨跌幅度
         public decimal FloatingRate { get; set; }
 
+        //昨收
+        public decimal YestodayClosePrice { get; set; }
+
+        public decimal OpenPrice { get; set; }
+
         //顺序
         public int Index { get; set; }
     }
