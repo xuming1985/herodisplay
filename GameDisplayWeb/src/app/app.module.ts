@@ -12,6 +12,7 @@ import { SideBarComponent } from './shared/layout/side-bar/side-bar.component';
 import { PortalComponent } from './portal/portal.component';
 import { IntroduceComponent } from './introduce/introduce.component';
 import { StockComponent } from './stock/stock.component';
+import { BugComponent } from './bug/bug.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { StockComponent } from './stock/stock.component';
     SideBarComponent,
     PortalComponent,
     IntroduceComponent,
-    StockComponent
+    StockComponent,
+    BugComponent
   ],
   imports: [
     BrowserModule,

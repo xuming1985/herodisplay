@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BugComponent } from './bug/bug.component';
 import { PortalComponent } from './portal/portal.component';
 import { IntroduceComponent } from './introduce/introduce.component';
 import { StockComponent } from './stock/stock.component';
@@ -8,6 +9,16 @@ const routes: Routes = [
   {
     path: 'portal',
     component: PortalComponent
+  },
+  {
+    path: 'bug',
+    component: BugComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './bug/bug.module#BugModule'
+      },
+    ]
   },
   {
     path: 'introduce',

@@ -70,6 +70,7 @@ export class DetailComponent implements OnInit {
                 data: this.getXData(),
                 axisLabel:{
                     formatter:function(value){
+                        
                         if(value.toString().Substring(3) == "00" || value.toString().Substring(3) =="30"){
                             return value;
                         }

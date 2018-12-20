@@ -25,8 +25,18 @@ export class EquipmentService {
       tap(summoners => console.log("get all summoner")),
       catchError(this.handleError<Equipment[]>("getAll Summoner", []))
     );
-
   }
+
+  getAll1(): Observable<EquipmentCategory[]> {
+    let url = this.baseUrl + "/api/Equipment";
+
+    return this.http.get<Equipment[]>(url).pipe(
+      map(res=>res.map(function(e1:Equipment, index:number){
+        return new EquipmentCategory();
+      }))
+    );
+  }
+
 
   getAllCategory():EquipmentCategory[]{
     const categories :EquipmentCategory[]  = [
