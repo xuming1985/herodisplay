@@ -1,6 +1,12 @@
 ﻿using GameDisplay.Domain;
+using GameDisplay.Common;
 using System.Collections.Generic;
 using System.Linq;
+using NPOI;
+using System;
+using System.IO;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 
 namespace GameDisplay.Service
 {
@@ -10,57 +16,151 @@ namespace GameDisplay.Service
         {
             using (var db = new GameDataContext())
             {
-                InitSummonerSkill(db);
+                string path = @"C:\ProjectMy\GameDisplay\GameDisplay\GameDisplay.App\App_Data\";
+                var files = Directory.GetFiles(path);
+                foreach (var file in files)
+                {
+                    if (Path.GetExtension(file) == ".xlsx")
+                    {
+                        LoadData(file, db);
+                    }
+                }
             }
         }
 
         /// <summary>
-        /// 初始化召唤师技能
+        /// 初始化数据
         /// </summary>
         /// <param name="context"></param>
-        private void InitSummonerSkill(GameDataContext context)
+        private void LoadData(string path, GameDataContext context)
         {
-            var ids = new List<int>()
-            {
-                80104, 80108, 80110, 80109,80102, 80105, 80103, 80107, 80121, 80115
-            };
-            var names = new List<string>()
-            {
-                "惩击", "终结", "狂暴", "疾跑", "治疗术", "干扰", "晕眩", "净化", "弱化", "闪现"
-            };
-            var conditions = new List<string>()
-            {
-                "LV.1解锁", "LV.3解锁", "LV.5解锁", "LV.7解锁", "LV.9解锁", "LV.11解锁", "LV.13解锁", "LV.15解锁", "LV.17解锁", "LV.19解锁"
-            };
-            var descriptions = new List<string>()
-            {
-                "30秒CD：对身边的野怪和小兵造成真实伤害并眩晕1秒",
-                "90秒CD：立即对身边敌军英雄造成其已损失生命值14%的真实伤害",
-                "60秒CD：增加攻击速度60%，并增加物理攻击力10%持续5秒",
-                "100秒CD：增加30%移动速度持续10秒",
-                "120秒CD：回复自己与附近队友15%生命值，提高附近友军移动速度15%持续2秒",
-                "60秒CD：沉默机关持续5秒",
-                "90秒CD：晕眩身边所有敌人0.75秒，并附带持续1秒的减速效果",
-                "120秒CD：解除自身所有负面和控制效果并免疫控制持续1.5秒",
-                "90秒CD：减少身边敌人伤害输出50%持续3秒。",
-                "120秒CD：向指定方向位移一段距离"
-            };
+            var fileName = Path.GetFileNameWithoutExtension(path);
 
-            for (var i=0; i< ids.Count();i++)
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
-                var entity = new SummonerSkill();
-                entity.Id = ids[i];
-                entity.SkillName = names[i];
-                entity.Thumbnail = @"Images\summoner\" + ids[i] + ".jpg";
-                entity.DisplayImage = @"Images\summoner\" + ids[i] + "-big.jpg";
-                entity.Condition = conditions[i];
-                entity.Description = descriptions[i];
-                entity.Index = i + 1;
+                IWorkbook workbook = new XSSFWorkbook(fs);
+                ISheet sheet = workbook.GetSheetAt(0);
+                IRow row;
+                for (var index = 1; index < sheet.LastRowNum; index++)
+                {
+                    row = sheet.GetRow(index);
+                    SaveRow(fileName, row, context);
+                }
 
-                context.SummonerSkills.Add(entity);
                 context.SaveChanges();
             }
+        }
 
+        private void SaveRow(string fileName, IRow row, GameDataContext context)
+        {
+            if (fileName == "BUser")
+            {
+                SaveBUser(row, context);
+            }
+            else if (fileName == "StockMonitor")
+            {
+                SaveStockMonitor(row, context);
+            }
+            else if (fileName == "SummonerSkill")
+            {
+                SaveSummonerSkill(row, context);
+            }
+            else if (fileName == "Equipment")
+            {
+                SaveEquipment(row, context);
+            }
+        }
+
+        /// <summary>
+        /// Bug 用户
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="context"></param>
+        private void SaveBUser(IRow row, GameDataContext context)
+        {
+            BUser user = new BUser();
+            user.Id = Convert.ToInt32(row.GetCell(0).NumericCellValue);
+            user.Account = row.GetCell(1).StringCellValue;
+            user.Password = row.GetCell(2).StringCellValue;
+            user.RealName = row.GetCell(3).StringCellValue;
+            user.Email = row.GetCell(4).StringCellValue;
+            user.Telephone = row.GetCell(5).NumericCellValue.ToString();
+            user.Role = (BRole)row.GetCell(6).NumericCellValue;
+            user.CreateUser = Convert.ToInt32(row.GetCell(7).NumericCellValue);
+            user.CreateTime = row.GetCell(8).DateCellValue;
+
+            context.BUsers.Add(user);
+        }
+
+        /// <summary>
+        /// 股票， 自选
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="context"></param>
+        private void SaveStockMonitor(IRow row, GameDataContext context)
+        {
+            StockMonitor item = new StockMonitor();
+            item.Id = Convert.ToInt32(row.GetCell(0).NumericCellValue);
+            item.Name = row.GetCell(1).StringCellValue;
+            ICell cell = row.GetCell(2);
+            if (cell.CellType == CellType.Numeric)
+            {
+                item.Code = row.GetCell(2).NumericCellValue.ToString();
+            }
+            else
+            {
+                item.Code = row.GetCell(2).StringCellValue;
+            }
+           
+            item.Category = row.GetCell(3).StringCellValue;
+            item.Index = Convert.ToInt32(row.GetCell(4).NumericCellValue);
+            context.StockMonitors.Add(item);
+        }
+
+        /// <summary>
+        /// 王者荣耀， 召唤师技能
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="context"></param>
+        private void SaveSummonerSkill(IRow row, GameDataContext context)
+        {
+            SummonerSkill item = new SummonerSkill();
+            item.Id = Convert.ToInt32(row.GetCell(0).NumericCellValue);
+            item.SkillName = row.GetCell(1).StringCellValue;
+            item.Thumbnail = row.GetCell(2).StringCellValue;
+            item.DisplayImage = row.GetCell(3).StringCellValue;
+            item.Condition = row.GetCell(4).StringCellValue;
+            item.Description = row.GetCell(5).StringCellValue;
+            item.Index = Convert.ToInt32(row.GetCell(6).NumericCellValue);
+
+            context.SummonerSkills.Add(item);
+        }
+
+        /// <summary>
+        /// 王者荣耀， 装备
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="context"></param>
+        private void SaveEquipment(IRow row, GameDataContext context)
+        {
+            Equipment item = new Equipment();
+            item.Id = Convert.ToInt32(row.GetCell(0).NumericCellValue);
+            item.Category = (InscriptionCategory)row.GetCell(1).NumericCellValue;
+            item.Name = row.GetCell(2).StringCellValue;
+            item.Thumbnail = row.GetCell(3).StringCellValue;
+            item.BuyPrice = Convert.ToInt32(row.GetCell(4).NumericCellValue);
+            item.SellPrice = Convert.ToInt32(row.GetCell(5).NumericCellValue);
+            if (row.GetCell(6) != null)
+            {
+                item.Desc1 = row.GetCell(6).StringCellValue;
+            }
+            if (row.GetCell(7) != null)
+            {
+                item.Desc2 = row.GetCell(7).StringCellValue;
+            }
+            
+            item.Index = Convert.ToInt32(row.GetCell(8).NumericCellValue);
+            context.Equipments.Add(item);
         }
     }
 }

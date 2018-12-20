@@ -26,6 +26,18 @@ namespace GameDisplay.Domain
 
         #endregion
 
+
+        #region bug 管理
+
+        //用户
+        public DbSet<BUser> BUsers { get; set; }
+        //项目
+        public DbSet<BProject> BProjects { get; set; }
+        //用户有权限的项目
+        public DbSet<BUserProject> BUserProjects { get; set; }
+
+        #endregion
+
         public GameDataContext()
             : base("SqliteConnection")
         {

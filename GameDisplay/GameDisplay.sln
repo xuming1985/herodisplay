@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDisplay.App", "GameDisp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDisplay.Dto", "GameDisplay.Dto\GameDisplay.Dto.csproj", "{5E95DA7E-4A07-4966-9E50-EF19402A09A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameDisplay.Common", "GameDisplay.Common\GameDisplay.Common.csproj", "{98531476-0358-41DB-B043-D0DF67E8197D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5E95DA7E-4A07-4966-9E50-EF19402A09A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E95DA7E-4A07-4966-9E50-EF19402A09A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E95DA7E-4A07-4966-9E50-EF19402A09A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98531476-0358-41DB-B043-D0DF67E8197D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98531476-0358-41DB-B043-D0DF67E8197D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98531476-0358-41DB-B043-D0DF67E8197D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98531476-0358-41DB-B043-D0DF67E8197D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -62,6 +62,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoincrementAttribute.cs" />
+    <Compile Include="bug\BProject.cs" />
+    <Compile Include="bug\BRole.cs" />
+    <Compile Include="bug\BugItem.cs" />
+    <Compile Include="bug\BugStatus.cs" />
+    <Compile Include="bug\BUser.cs" />
+    <Compile Include="bug\BUserProject.cs" />
     <Compile Include="kinghonour\Enum\EquipmentCategory.cs" />
     <Compile Include="kinghonour\Enum\InscriptionCategory.cs" />
     <Compile Include="GameDataContext.cs" />
