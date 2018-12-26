@@ -3,6 +3,8 @@ import { InscriptionService} from './inscription.service'
 import { SummonerService } from './summoner.service'
 import { EquipmentService } from './equipment.service'
 import { StockService } from './stock.service'
+import { BugService } from './bug.service'
+import { TokenAuthService } from './tokenAuth.service'
 
 @NgModule({
   imports: [],
@@ -10,7 +12,9 @@ import { StockService } from './stock.service'
   providers: [
     SummonerService,
     EquipmentService,
-    StockService
+    StockService,
+    BugService,
+    TokenAuthService
   ]
 })
 export class ServiceProxyModule { }

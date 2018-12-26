@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injector, ViewEncapsulation, OnInit } from '@angular/core';
+import { MenuItem } from './menu-item';
 
 @Component({
   selector: 'app-side-bar',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideBarComponent implements OnInit {
 
+  menuItems: MenuItem[] = [
+    new MenuItem("王者荣耀", "", "icon-diamond", "", [
+      new MenuItem("游戏资料", "", "", "/introduce")
+    ]),
+    new MenuItem("股票", "", "icon-diamond", "", [
+      new MenuItem("自选", "", "", "/stock/monitor"),
+      new MenuItem("行情", "", "", "/stock/quotation")
+    ]),
+    new MenuItem("问题跟踪", "", "icon-diamond", "", [
+      new MenuItem("问题列表", "", "", "/bug/list"),
+      new MenuItem("用户管理", "", "", "/bug/user"),
+      new MenuItem("项目管理", "", "", "/bug/project")
+    ])
+  ];
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  showMenuItem(menuItem): boolean {
+    return true;
+}
 
 }

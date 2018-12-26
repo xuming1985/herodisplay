@@ -35,27 +35,32 @@ namespace GameDisplay.Service
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public BUserDto CheckLogin(LoginInput input)
+        public BUserDto CheckUser(LoginInput input)
         {
             BUserDto result = null;
-            using (var db = new GameDataContext())
+            try
             {
-                string encryptPassword = Cryptogram.MD5Encrypt64(input.Password);
-                var user = db.BUsers.FirstOrDefault(o => o.Account == input.Account && o.Password == encryptPassword);
-                if (user != null)
+                using (var db = new GameDataContext())
                 {
-                    result = new BUserDto()
+                    string encryptPassword = Cryptogram.MD5Encrypt64(input.Password);
+                    var user = db.BUsers.FirstOrDefault(o => o.Account == input.Account && o.Password == encryptPassword);
+                    if (user != null)
                     {
-                        Id = user.Id,
-                        RealName = user.RealName,
-                        Role = Enum.GetName(typeof(BRole), user.Role)
-                    };
-                }
+                        result = new BUserDto()
+                        {
+                            Id = user.Id,
+                            RealName = user.RealName,
+                            Role = Enum.GetName(typeof(BRole), user.Role)
+                        };
+                    }
 
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
                 return result;
             }
         }
-
-
     }
 }

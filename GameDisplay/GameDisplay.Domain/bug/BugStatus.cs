@@ -8,23 +8,13 @@ namespace GameDisplay.Domain.bug
 {
     public enum BugStatus
     {
-        //草稿
-        Draft,
-
-        //新建
-        New,
-
-        //解决中
-        InSolve,
-
-        //已解决
-        Solved,
-
-        //拒绝的
-        Reject,
-
-        //完成
-        Finish,
-
+        新建,
+        待解决,
+        进行中,
+        已解决,
+        已拒绝,
+        决断,
+        挂起,
+        结束,
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameDisplay.Domain
 {
-    [Table("BProject")]
+    [Table("BUserProject")]
     public  class BUserProject
     {
         [Key]

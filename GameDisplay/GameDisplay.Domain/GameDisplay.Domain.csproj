@@ -66,6 +66,9 @@
     <Compile Include="bug\BRole.cs" />
     <Compile Include="bug\BugItem.cs" />
     <Compile Include="bug\BugStatus.cs" />
+    <Compile Include="bug\BugLevel.cs" />
+    <Compile Include="bug\BugType.cs" />
+    <Compile Include="bug\BugUrgency.cs" />
     <Compile Include="bug\BUser.cs" />
     <Compile Include="bug\BUserProject.cs" />
     <Compile Include="kinghonour\Enum\EquipmentCategory.cs" />
