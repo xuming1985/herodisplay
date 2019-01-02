@@ -1,22 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpResponseBase, HttpResponse } from '@angular/common/http';
-import { AppConsts } from '../AppConsts';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
+import { Observable} from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { HttpClient} from '@angular/common/http';
+import { BaseService } from './base.service';
 
 @Injectable()
-export class BugService {
+export class BugService extends BaseService{
 
-  private baseUrl: string;
-
-  constructor(private http: HttpClient) {
-    this.http = http;
-    this.baseUrl = AppConsts.appBaseUrl;
+  constructor(protected http: HttpClient) {
+    super(http);
   }
 
   getAll(): Observable<BUserDto[]> {
@@ -31,22 +23,17 @@ export class BugService {
   getCurrentLoginInformations(): Observable<UserLoginInfoDto> {
     let url = this.baseUrl + "/api/login/GetCurrentLoginInformations";
 
-    return this.http.get<UserLoginInfoDto>(url).pipe(
+    let options_ = {
+      headers: this.getHttpHeaders()
+    };
+
+    return this.http.get<UserLoginInfoDto>(url, options_).pipe(
       tap(item => console.log("get getCurrentLoginInformations")),
       catchError(this.handleError<UserLoginInfoDto>("getCurrentLoginInformationsr"))
     );
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
 
 }
 

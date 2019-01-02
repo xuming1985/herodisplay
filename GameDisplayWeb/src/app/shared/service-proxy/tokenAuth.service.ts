@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpResponseBase, HttpResponse } from '@angular/common/http';
+import { Observable, of} from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { HttpClient} from '@angular/common/http';
 import { AppConsts } from '../AppConsts';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 
 @Injectable()
 export class TokenAuthService {

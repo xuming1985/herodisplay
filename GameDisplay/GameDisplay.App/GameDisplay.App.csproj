@@ -212,6 +212,7 @@
     <Compile Include="Controllers\SummonerSkillController.cs" />
     <Compile Include="Controllers\HeroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filters\AuthTokenFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -305,6 +306,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GameDisplay.Common\GameDisplay.Common.csproj">
+      <Project>{98531476-0358-41db-b043-d0df67e8197d}</Project>
+      <Name>GameDisplay.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameDisplay.Domain\GameDisplay.Domain.csproj">
       <Project>{4c5f0891-27d8-4c95-bf88-fb24c6097635}</Project>
       <Name>GameDisplay.Domain</Name>

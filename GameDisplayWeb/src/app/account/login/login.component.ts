@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenAuthService, AuthenticateModel } from '../../shared/service-proxy/tokenAuth.service'
+import { AppSessionService } from '../../shared/auth/app-session.service'
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _tokenAuthService: TokenAuthService,
+    private _sessionService: AppSessionService,
     private _router: Router,
   ) { }
 
@@ -26,7 +28,9 @@ export class LoginComponent implements OnInit {
       .authenticate(this.authenticateModel)
       .subscribe((result: string) => {
         this.setCookie("auth_token", result);
-        this._router.navigate(['bug','list'])
+        this._sessionService.init().then(()=>{
+          this._router.navigate(['bug','list'])
+        })
       });
   }
 

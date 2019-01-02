@@ -15,25 +15,7 @@ import { PortalComponent } from './portal/portal.component';
 import { IntroduceComponent } from './introduce/introduce.component';
 import { StockComponent } from './stock/stock.component';
 import { BugComponent } from './bug/bug.component';
-import { AppSessionService } from './shared/auth/app-session.service';
 
-export function appInitializerFactory(injector: Injector,
-  platformLocation: PlatformLocation) {
-  return () => {
-
-    return new Promise<boolean>((resolve, reject) => {
-      var appSessionService: AppSessionService = injector.get(AppSessionService);
-      appSessionService.init().then(
-        (result) => {
-          resolve(result);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
-    });
-  }
-}
 
 @NgModule({
   declarations: [
@@ -55,12 +37,7 @@ export function appInitializerFactory(injector: Injector,
     NgxEchartsModule
   ],
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: appInitializerFactory,
-      deps: [Injector, PlatformLocation],
-      multi: true
-    }
+
   ],
   bootstrap: [AppComponent]
 })

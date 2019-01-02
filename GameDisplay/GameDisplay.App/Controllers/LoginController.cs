@@ -5,6 +5,8 @@ using System.Web.Http;
 using JWT;
 using JWT.Algorithms;
 using JWT.Serializers;
+using GameDisplay.App.Filters;
+using GameDisplay.Common;
 
 namespace GameDisplay.App.Controllers
 {
@@ -18,31 +20,36 @@ namespace GameDisplay.App.Controllers
             BUesrService service = new BUesrService();
             var user = service.CheckUser(input);
 
-            var payload = new Dictionary<string, object>
+            JWTPayloadInfo payload = new JWTPayloadInfo()
             {
-                 { "UID", user.Id },
-                 { "UName", user.RealName }
+                userid = user.Id,
+                username = user.RealName
             };
-            var secret = "123456789";
 
-            IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
-            IJsonSerializer serializer = new JsonNetSerializer();
-            IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
-            IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
-
-            string token = encoder.Encode(payload, secret);
+            string token = Cryptogram.JwtEncode(payload);
 
             return token;
         }
 
+        [AuthTokenFilter]
         [HttpGet]
         [Route("GetCurrentLoginInformations")]
         public UserLoginInfoDto GetCurrentLoginInformations()
         {
             UserLoginInfoDto result = new UserLoginInfoDto();
 
-            result.Account = "aaaa";
-            result.IsAdmin = true;
+            string token = ControllerContext.Request.Headers.Authorization.Parameter;
+
+            JWTPayloadInfo payload = Cryptogram.JwtDecode(token);
+            if (payload != null)
+            {
+                result.Account = payload.username;
+                result.IsAdmin = true;
+            }
+            else
+            {
+                result = null;
+            }
 
             return result;
         }
