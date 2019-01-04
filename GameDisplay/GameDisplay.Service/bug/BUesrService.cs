@@ -9,22 +9,32 @@ namespace GameDisplay.Service
 {
     public class BUesrService
     {
-        public List<BUserDto> GetAll()
+        public List<BUserDto> Query(BUserQueryInput input)
         {
             List<BUserDto> resultData = new List<BUserDto>();
             using (var db = new GameDataContext())
             {
-                var users = db.BUsers.ToList();
-                resultData = users.Select(user => new BUserDto()
+                try
                 {
-                    Id = user.Id,
-                    Account = user.Account,
-                    RealName = user.RealName,
-                    Email = user.Email,
-                    Telephone = user.Telephone,
-                    Role = Enum.GetName(typeof(BRole), user.Role)
-                }).ToList();
+                    var query = db.BUsers.OrderBy(o => o.Id);
+                    input.Total = query.Count();
 
+                    var users = query.Skip(input.Skip).Take(input.PageSize).ToList();
+                    resultData = users.Select(user => new BUserDto()
+                    {
+                        Id = user.Id,
+                        Account = user.Account,
+                        RealName = user.RealName,
+                        Email = user.Email,
+                        Telephone = user.Telephone,
+                        Role = Enum.GetName(typeof(BRole), user.Role)
+                    }).ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                
                 return resultData;
             }
         }

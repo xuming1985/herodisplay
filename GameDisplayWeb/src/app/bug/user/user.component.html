@@ -1,3 +1,49 @@
-<p>
-  user works!
-</p>
+<app-breadcrumb [moduleName]="'问题跟踪'" [pageName]="'用户管理'"></app-breadcrumb>
+
+<div class="portlet light bordered space-top-10">
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="icon-social-dribbble font-green"></i>
+      <span class="caption-subject font-green bold uppercase">用户管理</span>
+    </div>
+    <div class="actions">
+      <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+        <i class="icon-cloud-upload"></i>
+      </a>
+      <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
+        <i class="icon-wrench"></i>
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body">
+    <div class="table-scrollable">
+      <table class="table table-bordered table-striped">
+          <thead>
+              <tr>
+                  <th style="width:50px"> # </th>
+                  <th> 账号 </th>
+                  <th> 姓名 </th>
+                  <th> 角色 </th>
+                  <th> 电话 </th>
+                  <th> 邮件 </th>
+                  <th style="width:100px"> 操作 </th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users; let i = index">
+              <td>{{start + i + 1}}</td>
+              <td>{{user.account}}</td>
+              <td><a (click)="routeToDetail(user)">{{user.realName}}</a></td>
+              <td>{{user.role}}</td>
+              <td>{{user.telephone}}</td>
+              <td>{{user.email}}</td>
+              <td style="padding:5px 10px">
+                  <button type="button" class="btn btn-link btn-outline btn-xs"><i class="fa fa-remove"></i>移除</button>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+    <app-pagination (pageChanged)= "onPageChanged($event)"></app-pagination>
+  </div>
+</div>

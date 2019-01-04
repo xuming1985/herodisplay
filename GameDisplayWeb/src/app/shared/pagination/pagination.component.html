@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-4">
+    <label class="title-lable">{{pageShowInfo}}</label>
+  </div>
+  <div class="col-md-4">
+    <div class="btn-group space-center">
+      <button type="button" class="btn btn-default" style="box-shadow: 0px" (click) = "pageFirst()">首页</button>
+      <button type="button" class="btn btn-default" style="box-shadow: 0px" (click)="pagePre()">上一页</button>
+      <input name="page" type="text" class="form-control inner-input narrow-input" [(ngModel)]="pageInfo.page">
+      <button type="button" class="btn btn-default" style="box-shadow: 0px" (click)="pageNext()">下一页</button>
+      <button type="button" class="btn btn-default" style="box-shadow: 0px" (click)="pageLast()">尾页</button>
+    </div>
+  </div>
+  <div class="col-md-2">
+
+  </div>
+  <div class="col-md-2">
+    <div>
+      <select name="pageSize" class="form-control" [(ngModel)]="pageInfo.pageSize">
+        <option>10</option>
+        <option>25</option>
+        <option>50</option>
+      </select>
+    </div>
+  </div>
+</div>

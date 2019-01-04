@@ -12,9 +12,9 @@ const routes: Routes = [
     redirectTo: 'list',
     pathMatch: 'full'
   },
-  { path: 'user', component: UserComponent },
+  { path: 'user', component: UserComponent, canActivate: [AppRouteGuard] },
   { path: 'project', component: ProjectComponent, canActivate: [AppRouteGuard] },
-  { path: 'list', component: ListComponent, canActivate: [AppRouteGuard]}
+  { path: 'list', component: ListComponent, canActivate: [AppRouteGuard] }
 ]
 
 

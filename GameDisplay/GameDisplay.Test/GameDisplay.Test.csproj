@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5E95DA7E-4A07-4966-9E50-EF19402A09A9}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GameDisplay.Dto</RootNamespace>
-    <AssemblyName>GameDisplay.Dto</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ProjectGuid>{00650DE9-C3CA-4408-A31F-FA16E20D4CD6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GameDisplay.Test</RootNamespace>
+    <AssemblyName>GameDisplay.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,15 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bug\BUserDto.cs" />
-    <Compile Include="bug\BUserQueryInput.cs" />
-    <Compile Include="bug\UserLoginInfoDto.cs" />
-    <Compile Include="bug\LoginInput.cs" />
-    <Compile Include="DiagramPoint.cs" />
-    <Compile Include="PagedInput.cs" />
-    <Compile Include="StockMonitorDto.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimeDiagramDto.cs" />
+    <Compile Include="StockTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameDisplay.Dto\GameDisplay.Dto.csproj">
+      <Project>{5e95da7e-4a07-4966-9e50-ef19402a09a9}</Project>
+      <Name>GameDisplay.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameDisplay.Service\GameDisplay.Service.csproj">
+      <Project>{aabe403d-82fd-452e-a6f7-200639bda610}</Project>
+      <Name>GameDisplay.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,12 +1,11 @@
-﻿using GameDisplay.Dto;
-using GameDisplay.Service;
-using System.Collections.Generic;
-using System.Web.Http;
-using JWT;
-using JWT.Algorithms;
-using JWT.Serializers;
-using GameDisplay.App.Filters;
+﻿using GameDisplay.App.Filters;
 using GameDisplay.Common;
+using GameDisplay.Dto;
+using GameDisplay.Service;
+using System.Linq;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Web.Http;
 
 namespace GameDisplay.App.Controllers
 {
@@ -37,18 +36,16 @@ namespace GameDisplay.App.Controllers
         public UserLoginInfoDto GetCurrentLoginInformations()
         {
             UserLoginInfoDto result = new UserLoginInfoDto();
-
-            string token = ControllerContext.Request.Headers.Authorization.Parameter;
-
-            JWTPayloadInfo payload = Cryptogram.JwtDecode(token);
-            if (payload != null)
+            IPrincipal principal = this.User;
+            if (principal != null)
             {
-                result.Account = payload.username;
-                result.IsAdmin = true;
-            }
-            else
-            {
-                result = null;
+                result = new UserLoginInfoDto();
+                var identity = (ClaimsIdentity)principal.Identity;
+                var claim = identity.Claims.FirstOrDefault(o=>o.Type == ClaimTypes.Name);
+                if (claim != null)
+                {
+                    result.Account = claim.Value;
+                }
             }
 
             return result;

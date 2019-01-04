@@ -1,23 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { HttpClient} from '@angular/common/http';
-import { BaseService } from './base.service';
+import { HttpClient } from '@angular/common/http';
+import { BaseService, PagedInput } from './base.service';
 
 @Injectable()
-export class BugService extends BaseService{
+export class BugService extends BaseService {
 
   constructor(protected http: HttpClient) {
     super(http);
-  }
-
-  getAll(): Observable<BUserDto[]> {
-    let url = this.baseUrl + "/api/StockMonitor";
-
-    return this.http.get<BUserDto[]>(url).pipe(
-      tap(summoners => console.log("get all summoner")),
-      catchError(this.handleError<BUserDto[]>("getAll StockMonitor", []))
-    );
   }
 
   getCurrentLoginInformations(): Observable<UserLoginInfoDto> {
@@ -32,9 +23,26 @@ export class BugService extends BaseService{
       catchError(this.handleError<UserLoginInfoDto>("getCurrentLoginInformationsr"))
     );
   }
+}
 
+@Injectable()
+export class UserService extends BaseService {
+  constructor(protected http: HttpClient) {
+    super(http);
+  }
 
+  getAllUsers(queryInput: BUserQueryInput): Observable<BUserQueryOutput> {
+    let url = this.baseUrl + "/api/user/pagedlist";
 
+    let options_ = {
+      headers: this.getHttpHeaders()
+    };
+
+    return this.http.post<BUserQueryOutput>(url, queryInput, options_).pipe(
+      tap(item => console.log("get all users")),
+      catchError(this.handleError<BUserQueryOutput>("getAll users"))
+    );
+  }
 }
 
 export class UserLoginInfoDto {
@@ -44,8 +52,26 @@ export class UserLoginInfoDto {
   isAdmin: boolean;
 }
 
+
+
+export class BUserQueryInput extends PagedInput {
+
+}
+
+export class BUserQueryOutput {
+  total: number;
+  data: BUserDto[];
+}
+
 export class BUserDto {
   id: number;
-  name: string;
+  account: string;
+  password: string;
+  realName: string;
+  email: string;
+  telephone: string;
+  role: string;
+  createUser: string;
+  createTime: Date;
 }
 

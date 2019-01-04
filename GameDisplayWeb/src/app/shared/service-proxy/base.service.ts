@@ -14,7 +14,7 @@ export class BaseService {
 
     protected getHttpHeaders(): HttpHeaders {
 
-        let headers:HttpHeaders = new HttpHeaders({
+        let headers: HttpHeaders = new HttpHeaders({
             "Content-Type": "application/json",
             "Accept": "application/json",
             "Authorization": "token " + this.getCookie("auth_token")
@@ -42,5 +42,15 @@ export class BaseService {
             // Let the app keep running by returning an empty result.
             return of(result as T);
         };
+    }
+}
+
+export class PagedInput {
+    page: number;
+    pageSize: number;
+
+    constructor(){
+        this.page = 1;
+        this.pageSize = 10;
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Web;
+﻿using GameDisplay.App.Filters;
 using System.Web.Mvc;
 
 namespace GameDisplay.App

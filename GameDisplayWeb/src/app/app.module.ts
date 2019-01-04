@@ -16,7 +16,6 @@ import { IntroduceComponent } from './introduce/introduce.component';
 import { StockComponent } from './stock/stock.component';
 import { BugComponent } from './bug/bug.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

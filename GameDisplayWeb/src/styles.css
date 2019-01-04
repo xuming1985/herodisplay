@@ -31,6 +31,16 @@ h4 {
     margin-top: 10px;
 }
 
+.space-center{
+    display: -webkit-flex;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+}
+
+.title-lable{
+    line-height: 34px;
+}
+
 .herolist-box {
     margin-bottom: 50px;
     padding: 35px 28px;
