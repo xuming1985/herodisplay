@@ -1,43 +1,47 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PagedInput } from '../../shared/service-proxy/base.service'
 import { UserService, BUserQueryInput, BUserDto } from '../../shared/service-proxy/bug.service'
-import { PaginationComponent } from '../../shared/pagination/pagination.component';
+import { PagedListingComponentBase } from '../../shared/pagination/paged-listing-component-base';
+
+import { CreateUserComponent } from './create-user/create-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent extends PagedListingComponentBase{
 
   private users: BUserDto[] = [];
   private queryInput: BUserQueryInput = new BUserQueryInput();
-  private start: number;
 
-  @ViewChild(PaginationComponent)
-  private paginationComponent: PaginationComponent;
+  @ViewChild('createUserModal') createUserModal: CreateUserComponent;
+	@ViewChild('editUserModal') editUserModal: EditUserComponent;
 
   constructor(private service: UserService) {
-
-  }
-
-  ngOnInit() {
-
-  }
-
-  getAllUsers(): void {
-    this.service.getAllUsers(this.queryInput)
-      .subscribe(result => {
-        this.users = result.data;
-        this.paginationComponent.updateInfo(result.total);
-        this.start = (this.queryInput.page - 1) * this.queryInput.pageSize;
-      })
+    super()
   }
 
   onPageChanged(pageInfo: PagedInput): void {
     this.queryInput.page = pageInfo.page;
     this.queryInput.pageSize = pageInfo.pageSize;
-    this.getAllUsers();
+    this.service.getAllUsers(this.queryInput)
+      .subscribe(result => {
+        this.users = result.data;
+        this.showPaging(result.total);
+      })
   }
 
+  addNewUser():void{
+    this.createUserModal.show();
+  }
+
+  editUser(user:BUserDto): void {
+		this.editUserModal.show(user.id);
+  }
+  
+  delete(user: BUserDto){
+
+  }
 }

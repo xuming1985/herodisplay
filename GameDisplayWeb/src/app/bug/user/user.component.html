@@ -1,33 +1,32 @@
-<app-breadcrumb [moduleName]="'问题跟踪'" [pageName]="'用户管理'"></app-breadcrumb>
+<div class="clearfix">
+  <app-breadcrumb [moduleName]="'问题跟踪'" [pageName]="'用户管理'"></app-breadcrumb>
 
-<div class="portlet light bordered space-top-10">
-  <div class="portlet-title">
-    <div class="caption">
-      <i class="icon-social-dribbble font-green"></i>
-      <span class="caption-subject font-green bold uppercase">用户管理</span>
+  <div class="portlet light bordered space-top-10">
+    <div class="portlet-title">
+      <div class="caption">
+        <i class="icon-social-dribbble font-green"></i>
+        <span class="caption-subject font-green bold uppercase">用户管理</span>
+
+      </div>
+      <div class="actions">
+        <button id="addNewUser" class="btn green" (click)="addNewUser()">
+          <i class="icon-user-follow"></i>添加新用户
+        </button>
+      </div>
     </div>
-    <div class="actions">
-      <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-        <i class="icon-cloud-upload"></i>
-      </a>
-      <a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-        <i class="icon-wrench"></i>
-      </a>
-    </div>
-  </div>
-  <div class="portlet-body">
-    <div class="table-scrollable">
-      <table class="table table-bordered table-striped">
+    <div class="portlet-body">
+      <div class="table-scrollable">
+        <table class="table table-bordered table-striped">
           <thead>
-              <tr>
-                  <th style="width:50px"> # </th>
-                  <th> 账号 </th>
-                  <th> 姓名 </th>
-                  <th> 角色 </th>
-                  <th> 电话 </th>
-                  <th> 邮件 </th>
-                  <th style="width:100px"> 操作 </th>
-              </tr>
+            <tr>
+              <th style="width:50px"> # </th>
+              <th> 账号 </th>
+              <th> 姓名 </th>
+              <th> 角色 </th>
+              <th> 电话 </th>
+              <th> 邮件 </th>
+              <th style="width:150px"> 操作 </th>
+            </tr>
           </thead>
           <tbody>
             <tr *ngFor="let user of users; let i = index">
@@ -38,12 +37,18 @@
               <td>{{user.telephone}}</td>
               <td>{{user.email}}</td>
               <td style="padding:5px 10px">
-                  <button type="button" class="btn btn-link btn-outline btn-xs"><i class="fa fa-remove"></i>移除</button>
+                <button type="button" class="btn btn-success btn-xs" (click)="editUser(user)"><i class="fa fa fa-edit"></i>&nbsp;编辑&nbsp;</button>
+                <button type="button" class="btn btn-danger btn-xs" (click)="delete()"><i class="fa fa-remove"></i>&nbsp;删除&nbsp;</button>
               </td>
             </tr>
           </tbody>
-      </table>
+        </table>
+      </div>
+      <app-pagination (pageChanged)="onPageChanged($event)"></app-pagination>
     </div>
-    <app-pagination (pageChanged)= "onPageChanged($event)"></app-pagination>
   </div>
 </div>
+
+
+<app-create-user #createUserModal (modalSave)="refresh()"></app-create-user>
+<app-edit-user #editUserModal (modalSave)="refresh()"></app-edit-user>

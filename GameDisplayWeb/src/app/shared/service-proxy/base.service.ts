@@ -6,6 +6,7 @@ import { AppConsts } from '../AppConsts';
 export class BaseService {
 
     protected baseUrl: string;
+    
 
     constructor(protected http: HttpClient) {
         this.http = http;

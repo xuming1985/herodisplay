@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
-import { PagedInput } from "../service-proxy/base.service";
 
 @Component({
   selector: 'app-pagination',
@@ -59,4 +58,14 @@ export class PaginationComponent implements OnInit {
     this.pageShowInfo = "Show " + start + " to " + end + " of " + total + " items";
   }
 
+}
+
+export class PagedInput {
+  page: number;
+  pageSize: number;
+
+  constructor(){
+      this.page = 1;
+      this.pageSize = 10;
+  }
 }

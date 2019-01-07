@@ -43,6 +43,45 @@ export class UserService extends BaseService {
       catchError(this.handleError<BUserQueryOutput>("getAll users"))
     );
   }
+
+  create(user: BUserDto): Observable<boolean> {
+    let url = this.baseUrl + "/api/user/create";
+
+    let options_ = {
+      headers: this.getHttpHeaders()
+    };
+
+    return this.http.post<boolean>(url, user, options_).pipe(
+      tap(item => console.log("create user")),
+      catchError(this.handleError<boolean>("create user"))
+    );
+  }
+
+  getUserForEdit(id: number): Observable<UserForEditDto> {
+    let url = this.baseUrl + "/api/user/getUserForEdit/" + id;
+
+    let options_ = {
+      headers: this.getHttpHeaders()
+    };
+
+    return this.http.get<UserForEditDto>(url, options_).pipe(
+      tap(item => console.log("edit user")),
+      catchError(this.handleError<UserForEditDto>("edit user"))
+    );
+  }
+
+  update(model: UserForEditDto): Observable<boolean> {
+    let url = this.baseUrl + "/api/user/create";
+
+    let options_ = {
+      headers: this.getHttpHeaders()
+    };
+
+    return this.http.post<boolean>(url, model, options_).pipe(
+      tap(item => console.log("update user")),
+      catchError(this.handleError<boolean>("update user"))
+    );
+  }
 }
 
 export class UserLoginInfoDto {
@@ -73,5 +112,9 @@ export class BUserDto {
   role: string;
   createUser: string;
   createTime: Date;
+}
+
+export class UserForEditDto {
+  user: BUserDto | undefined;
 }
 

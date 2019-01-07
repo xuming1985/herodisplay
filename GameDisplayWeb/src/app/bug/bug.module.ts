@@ -1,15 +1,21 @@
 import { NgModule, APP_INITIALIZER, Injector } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap';
 import { BugRoutingModule } from './/bug-routing.module';
 
-import { UserComponent } from './user/user.component';
 import { ProjectComponent } from './project/project.component';
 import { ListComponent } from './list/list.component';
+
+import { UserComponent } from './user/user.component';
+import { CreateUserComponent } from './user/create-user/create-user.component';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
+
 import { PaginationComponent } from '../shared/pagination/pagination.component';
 import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
 
 import { AppSessionService } from '../shared/auth/app-session.service';
+
 
 export function appInitializerFactory(injector: Injector) {
   return () => {
@@ -33,14 +39,18 @@ export function appInitializerFactory(injector: Injector) {
   imports: [
     CommonModule,
     FormsModule,
+    ModalModule,
+    ModalModule.forRoot(),
     BugRoutingModule
   ],
   declarations: [
     BreadcrumbComponent,
     PaginationComponent,
-    UserComponent,
     ProjectComponent,
-    ListComponent
+    ListComponent,
+    UserComponent,
+    CreateUserComponent,
+    EditUserComponent
   ],
   providers: [
     {
