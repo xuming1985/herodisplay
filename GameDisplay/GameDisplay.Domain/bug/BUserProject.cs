@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameDisplay.Domain
@@ -12,5 +13,9 @@ namespace GameDisplay.Domain
         public int UserId { get; set; }
 
         public int ProjectId { get; set; }
+
+        public string CreateUser { get; set; }
+
+        public DateTime CreateTime { get; set; }
     }
 }

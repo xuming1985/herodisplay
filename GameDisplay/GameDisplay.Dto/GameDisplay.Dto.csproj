@@ -40,7 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bug\BProjectDto.cs" />
+    <Compile Include="bug\BProjectModuleDto.cs" />
+    <Compile Include="bug\BProjectQueryInput.cs" />
     <Compile Include="bug\BUserDto.cs" />
+    <Compile Include="bug\BItem.cs" />
     <Compile Include="bug\BUserQueryInput.cs" />
     <Compile Include="bug\UserLoginInfoDto.cs" />
     <Compile Include="bug\LoginInput.cs" />

@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bug\BProjectService.cs" />
     <Compile Include="bug\BUesrService.cs" />
     <Compile Include="InitService.cs" />
     <Compile Include="kinghonour\EquipmentService.cs" />

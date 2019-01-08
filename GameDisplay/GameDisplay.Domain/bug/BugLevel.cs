@@ -2,10 +2,10 @@
 {
     public enum BugLevel
     {
-        Fatal, //致命
-        Serious, //严重
-        Common,// 一般
-        Minor
+        致命, //
+        严重, //
+        一般,// 一般
+        轻微
     }
 
 }

@@ -6,7 +6,7 @@ import { AppConsts } from '../AppConsts';
 export class BaseService {
 
     protected baseUrl: string;
-    
+
 
     constructor(protected http: HttpClient) {
         this.http = http;
@@ -50,8 +50,15 @@ export class PagedInput {
     page: number;
     pageSize: number;
 
-    constructor(){
+    constructor() {
         this.page = 1;
         this.pageSize = 10;
     }
+}
+
+export class BItem {
+    id: number;
+    name: string;
+    createUser: string;
+    createTime: Date;
 }

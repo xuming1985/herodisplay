@@ -18,16 +18,19 @@ namespace GameDisplay.App.Controllers
         {
             BUesrService service = new BUesrService();
             var user = service.CheckUser(input);
-
-            JWTPayloadInfo payload = new JWTPayloadInfo()
+            if (user != null)
             {
-                userid = user.Id,
-                username = user.RealName
-            };
+                JWTPayloadInfo payload = new JWTPayloadInfo()
+                {
+                    userid = user.Id,
+                    username = user.RealName
+                };
 
-            string token = Cryptogram.JwtEncode(payload);
+                string token = Cryptogram.JwtEncode(payload);
 
-            return token;
+                return token;
+            }
+            return string.Empty;
         }
 
         [AuthTokenFilter]

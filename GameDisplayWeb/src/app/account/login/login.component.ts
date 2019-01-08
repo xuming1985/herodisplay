@@ -27,10 +27,12 @@ export class LoginComponent implements OnInit {
     this._tokenAuthService
       .authenticate(this.authenticateModel)
       .subscribe((result: string) => {
-        this.setCookie("auth_token", result);
-        this._sessionService.init().then(()=>{
-          this._router.navigate(['bug','list'])
-        })
+        if (result) {
+          this.setCookie("auth_token", result);
+          this._sessionService.init().then(() => {
+            this._router.navigate(['bug', 'list'])
+          })
+        }
       });
   }
 

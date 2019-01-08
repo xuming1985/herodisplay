@@ -1,0 +1,50 @@
+<div bsModal #editProjectModal="bs-modal" class="modal fade" id="editProjectModal" tabindex="-1" role="dialog"
+    aria-labelledby="editProjectModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form *ngIf="project" #editProjectForm="ngForm" class="form-horizontal" id="frm_edit_project" novalidate
+                (ngSubmit)="save()">
+                <div class="modal-header">
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">
+                        <span>新建项目</span>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="name" class="control-label col-sm-3">项目名称</label>
+                                <div class="col-sm-8">
+                                    <input id="name" type="text" name="name" [(ngModel)]="project.name" required
+                                        maxlength="20" minlength="2" class="validate form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="account" class="control-label col-sm-3">项目描述</label>
+                                <div class="col-sm-8">
+                                    <textarea id="desc" name="desc" [(ngModel)]="project.desc" class="validate form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default waves-effect" (click)="close()">
+                        取消
+                    </button>
+                    <button [disabled]="!editProjectForm.form.valid || saving" type="submit" class="btn btn-primary waves-effect">
+                        <i *ngIf="saving" class=""></i>保存
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -62,9 +62,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoincrementAttribute.cs" />
+    <Compile Include="bug\BPermission.cs" />
     <Compile Include="bug\BProject.cs" />
+    <Compile Include="bug\BProjectModule.cs" />
+    <Compile Include="bug\BRolePermission.cs" />
     <Compile Include="bug\BRole.cs" />
+    <Compile Include="bug\BugAttachment.cs" />
     <Compile Include="bug\BugItem.cs" />
+    <Compile Include="bug\BugItemTimeLine.cs" />
+    <Compile Include="bug\BugItemMemo.cs" />
     <Compile Include="bug\BugStatus.cs" />
     <Compile Include="bug\BugLevel.cs" />
     <Compile Include="bug\BugType.cs" />

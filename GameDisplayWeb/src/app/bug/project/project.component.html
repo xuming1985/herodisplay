@@ -1,3 +1,55 @@
-<p>
-  project works!
-</p>
+<div class="clearfix">
+  <app-breadcrumb [moduleName]="'问题跟踪'" [pageName]="'项目管理'"></app-breadcrumb>
+
+  <div class="portlet light bordered space-top-10">
+    <div class="portlet-title">
+      <div class="caption">
+        <i class="icon-social-dribbble font-green"></i>
+        <span class="caption-subject font-green bold uppercase">项目管理</span>
+
+      </div>
+      <div class="actions">
+        <button id="addNewProject" class="btn green" (click)="addNewProject()">
+          <i class="icon-user-follow"></i>添加新项目
+        </button>
+      </div>
+    </div>
+    <div class="portlet-body">
+      <div class="table-scrollable">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th style="width:50px"> # </th>
+              <th> 项目名称 </th>
+              <th> 项目描述 </th>
+              <th> 模块 </th>
+              <th> 成员 </th>
+              <th style="width:180px"> 操作 </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of projects; let i = index">
+              <td>{{start + i + 1}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.desc}}</td>
+              <td><span *ngFor="let module of item.modules" class="label label-sm label-danger">{{module.name}} <a (click)="removeModule(module)"><i class="fa fa-times"></i></a></span> </td>
+              <td>{{item.members.length}}</td>
+              <td style="padding:5px 10px">
+                <button type="button" class="btn btn-success btn-xs btn-cell" (click)="editProject(item)"><i class="fa fa fa-edit"></i>&nbsp;编辑&nbsp;</button>
+                <button type="button" class="btn btn-success btn-xs btn-cell" (click)="addModule(item)"><i class="fa fa fa-edit"></i>&nbsp;添加模块&nbsp;</button>
+                <div style="height:5px"></div>
+                <button type="button" class="btn btn-danger btn-xs btn-cell" (click)="delete(item)"><i class="fa fa-remove"></i>&nbsp;删除&nbsp;</button>
+                <button type="button" class="btn btn-success btn-xs btn-cell" (click)="addMember(item)"><i class="fa fa fa-edit"></i>&nbsp;添加成员&nbsp;</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <app-pagination (pageChanged)="onPageChanged($event)"></app-pagination>
+    </div>
+  </div>
+</div>
+
+<app-edit-project #editProjectModal (modalSave)="refresh()"></app-edit-project>
+<app-add-member-project #addMemberProjectModal (modalSave)="refresh()"></app-add-member-project>
+<app-add-module-project #addModuleProjectModal (modalSave)="refresh()"></app-add-module-project>

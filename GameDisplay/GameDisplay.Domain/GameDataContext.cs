@@ -29,12 +29,21 @@ namespace GameDisplay.Domain
 
         #region bug 管理
 
-        //用户
-        public DbSet<BUser> BUsers { get; set; }
         //项目
         public DbSet<BProject> BProjects { get; set; }
-        //用户有权限的项目
+        public DbSet<BProjectModule> BProjectModules { get; set; }
+
+        public DbSet<BRole> BRoles { get; set; }
+        public DbSet<BRolePermission> BRolePermissions { get; set; }
+
+        //用户
+        public DbSet<BUser> BUsers { get; set; }
         public DbSet<BUserProject> BUserProjects { get; set; }
+
+        public DbSet<BugItem> BugItems { get; set; }
+        public DbSet<BugItemMemo> BugItemMemos { get; set; }
+        public DbSet<BugItemTimeLine> BugItemTimeLines { get; set; }
+        public DbSet<BugAttachment> BugAttachments { get; set; }
 
         #endregion
 

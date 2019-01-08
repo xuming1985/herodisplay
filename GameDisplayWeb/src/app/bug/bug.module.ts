@@ -16,6 +16,10 @@ import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
 
 import { AppSessionService } from '../shared/auth/app-session.service';
 
+import { EditProjectComponent } from './project/edit-project/edit-project.component';
+import { AddModuleProjectComponent } from './project/add-module-project/add-module-project.component';
+import { AddMemberProjectComponent } from './project/add-member-project/add-member-project.component';
+
 
 export function appInitializerFactory(injector: Injector) {
   return () => {
@@ -50,7 +54,10 @@ export function appInitializerFactory(injector: Injector) {
     ListComponent,
     UserComponent,
     CreateUserComponent,
-    EditUserComponent
+    EditUserComponent,
+    EditProjectComponent,
+    AddModuleProjectComponent,
+    AddMemberProjectComponent
   ],
   providers: [
     {

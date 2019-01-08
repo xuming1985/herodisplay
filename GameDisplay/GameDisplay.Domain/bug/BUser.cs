@@ -20,7 +20,9 @@ namespace GameDisplay.Domain
 
         public string Telephone { get; set; }
 
-        public BRole Role { get; set; }
+        public bool IsActive { get; set; }
+
+        public int Role { get; set; }
 
         public int? CreateUser { get; set; }
 

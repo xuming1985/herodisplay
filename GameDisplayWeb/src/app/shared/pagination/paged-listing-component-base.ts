@@ -15,6 +15,10 @@ export abstract class PagedListingComponentBase implements OnInit {
        
     }
 
+    refresh():void{
+        this.paginationComponent.ngOnInit();
+    }
+
     showPaging(total:number):void{
         this.paginationComponent.updateInfo(total);
         this.start = (this.pagedInput.page - 1) * this.pagedInput.pageSize;

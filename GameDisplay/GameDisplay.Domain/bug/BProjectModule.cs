@@ -4,18 +4,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameDisplay.Domain
 {
-    [Table("BRole")]
-    public class BRole
+    [Table("BProjectModule")]
+    public class BProjectModule
     {
         [Key]
         public int Id { get; set; }
 
+        public int ProjectId { get; set; }
+
         public string Name { get; set; }
 
-        //创建人
-        public int CreateUser { get; set; }
+        public string Desc { get; set; }
 
-        //创建时间
+        public string CreateUser { get; set; }
+
         public DateTime CreateTime { get; set; }
     }
 }

@@ -4,18 +4,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameDisplay.Domain
 {
-    [Table("BRole")]
-    public class BRole
+    [Table("BugAttachment")]
+    public class BugAttachment
     {
         [Key]
         public int Id { get; set; }
 
+        public int BugItemId { get; set; }
+
         public string Name { get; set; }
+
+        public string Path { get; set; }
 
         //创建人
         public int CreateUser { get; set; }
 
-        //创建时间
+        //问题创建时间
         public DateTime CreateTime { get; set; }
     }
 }

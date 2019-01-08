@@ -85,9 +85,10 @@ namespace GameDisplay.Service
             user.RealName = row.GetCell(3).StringCellValue;
             user.Email = row.GetCell(4).StringCellValue;
             user.Telephone = row.GetCell(5).NumericCellValue.ToString();
-            user.Role = (BRole)row.GetCell(6).NumericCellValue;
-            user.CreateUser = Convert.ToInt32(row.GetCell(7).NumericCellValue);
-            user.CreateTime = row.GetCell(8).DateCellValue;
+            user.IsActive = row.GetCell(6).BooleanCellValue;
+            user.Role = Convert.ToInt32(row.GetCell(7).NumericCellValue);
+            user.CreateUser = Convert.ToInt32(row.GetCell(8).NumericCellValue);
+            user.CreateTime = row.GetCell(9).DateCellValue;
 
             context.BUsers.Add(user);
         }
