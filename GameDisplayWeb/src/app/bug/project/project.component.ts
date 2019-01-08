@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PagedInput } from '../../shared/service-proxy/base.service'
+import { ToastrService } from 'ngx-toastr';
+import swal from 'sweetalert2';
+
+import { PagedInput, BItem } from '../../shared/service-proxy/base.service'
 import { ProjectService, BProjectQueryInput, BProjectDto, BProjectModuleDto } from '../../shared/service-proxy/bug.service'
 import { PagedListingComponentBase } from '../../shared/pagination/paged-listing-component-base';
 
@@ -21,8 +24,10 @@ export class ProjectComponent extends PagedListingComponentBase {
   @ViewChild('addMemberProjectModal') addMemberProjectModal: AddMemberProjectComponent;
   @ViewChild('addModuleProjectModal') addModuleProjectModal: AddModuleProjectComponent;
 
-  constructor(private service: ProjectService) {
-    super()
+  constructor(
+    private service: ProjectService,
+    public toastr: ToastrService) {
+    super(toastr);
   }
 
   onPageChanged(pageInfo: PagedInput): void {
@@ -43,20 +48,70 @@ export class ProjectComponent extends PagedListingComponentBase {
     this.editProjectModal.show(project);
   }
 
-  addModule(project:BProjectDto):void{
+  addModule(project: BProjectDto): void {
     this.addModuleProjectModal.show(project.id);
   }
 
-  removeModule(module: BProjectModuleDto):void{
-    console.log("delete module "+ module.name);
+  removeModule(module: BItem): void {
+
+    swal({
+      title: "是否确认删除当前选择得项目模块？",
+      type: "warning",
+      width: "400px",
+      showCancelButton: true,
+      showConfirmButton: true,
+      cancelButtonText: "否",
+      confirmButtonText: "是"
+    }).then((willDelete) => {
+      if (willDelete.value) {
+        this.service.removeModule(module.id)
+          .subscribe(result => {
+            this.showDeleteResult(result);
+          });
+      }
+    });
   }
 
-  addMember(project:BProjectDto):void{
-    
+  addMember(project: BProjectDto): void {
+    this.addMemberProjectModal.show(project);
   }
 
-  delete(user: BProjectDto) {
+  removeMember(member: BItem): void {
+    swal({
+      title: "是否确认删除当前选择的项目成员？",
+      type: "warning",
+      width: "400px",
+      showCancelButton: true,
+      showConfirmButton: true,
+      cancelButtonText: "否",
+      confirmButtonText: "是"
+    }).then((willDelete) => {
+      if (willDelete.value) {
+        this.service.removeMember(member.id)
+          .subscribe(result => {
+            this.showDeleteResult(result);
+          });
+      }
+    });
+  }
 
+  delete(project: BProjectDto) {
+    swal({
+      title: "是否确认删除当前选择的项目？",
+      type: "warning",
+      width: "400px",
+      showCancelButton: true,
+      showConfirmButton: true,
+      cancelButtonText: "否",
+      confirmButtonText: "是"
+    }).then((willDelete) => {
+      if (willDelete.value) {
+        this.service.delete(project.id)
+          .subscribe(result => {
+            this.showDeleteResult(result);
+          });
+      }
+    });
   }
 
 }

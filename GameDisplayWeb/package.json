@@ -24,7 +24,9 @@
     "echarts": "^4.2.0-rc.2",
     "ngx-bootstrap": "^3.1.4",
     "ngx-echarts": "^4.0.1",
+    "ngx-toastr": "^9.1.1",
     "rxjs": "^6.0.0",
+    "sweetalert2": "^7.33.1",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

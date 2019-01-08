@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { BaseService, PagedInput, BItem } from './base.service';
+import { BaseService, PagedInput, BItem, TreeItem } from './base.service';
 
 @Injectable()
 export class BugService extends BaseService {
@@ -31,7 +31,7 @@ export class UserService extends BaseService {
     super(http);
   }
 
-  getAllUsers(queryInput: BUserQueryInput): Observable<BUserQueryOutput> {
+  getPagedList(queryInput: BUserQueryInput): Observable<BUserQueryOutput> {
     let url = this.baseUrl + "/api/user/pagedlist";
 
     let options_ = {
@@ -41,6 +41,19 @@ export class UserService extends BaseService {
     return this.http.post<BUserQueryOutput>(url, queryInput, options_).pipe(
       tap(item => console.log("get all users")),
       catchError(this.handleError<BUserQueryOutput>("getAll users"))
+    );
+  }
+
+  getRoleTree(): Observable<TreeItem[]> {
+    let url = this.baseUrl + "/api/user/getroletree";
+
+    let options_ = {
+      headers: this.getHttpHeaders()
+    };
+
+    return this.http.get<TreeItem[]>(url, options_).pipe(
+      tap(item => console.log("get all users")),
+      catchError(this.handleError<TreeItem[]>("getAll users"))
     );
   }
 
@@ -129,6 +142,19 @@ export class ProjectService extends BaseService {
     return this.http.post<boolean>(url, project, options_).pipe(
       tap(item => console.log("update project updatemembers")),
       catchError(this.handleError<boolean>("update project updatemembers"))
+    );
+  }
+
+  removeMember(memberId: number): Observable<boolean> {
+    let url = this.baseUrl + "/api/project/removemember/" + memberId;
+
+    let options_ = {
+      headers: this.getHttpHeaders()
+    };
+
+    return this.http.delete<boolean>(url, options_).pipe(
+      tap(item => console.log("update project removemember")),
+      catchError(this.handleError<boolean>("update project removemember"))
     );
   }
 
@@ -221,8 +247,8 @@ export class BProjectDto {
   isActive: boolean;
   createUserName: string;
   createTime: Date;
-  modules: BItem[];
-  members: BItem[];
+  modules: BItem[] = [];
+  members: BItem[] = [];
 }
 
 export class BProjectModuleDto{

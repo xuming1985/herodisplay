@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector, APP_INITIALIZER, LOCALE_ID } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; //需要
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module'
 import { HttpClientModule } from '@angular/common/http';
 import { PlatformLocation, registerLocaleData } from '@angular/common';
@@ -29,11 +31,13 @@ import { BugComponent } from './bug/bug.component';
     BugComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ServiceProxyModule,
-    NgxEchartsModule
+    NgxEchartsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
 

@@ -46,6 +46,7 @@
     <Compile Include="bug\BUserDto.cs" />
     <Compile Include="bug\BItem.cs" />
     <Compile Include="bug\BUserQueryInput.cs" />
+    <Compile Include="bug\TreeItem.cs" />
     <Compile Include="bug\UserLoginInfoDto.cs" />
     <Compile Include="bug\LoginInput.cs" />
     <Compile Include="DiagramPoint.cs" />

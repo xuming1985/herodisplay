@@ -1,3 +1,48 @@
-<p>
-  add-member-project works!
-</p>
+<div bsModal #addMemberProjectModal="bs-modal" class="modal fade" id="addMemberProjectModal" tabindex="-1" role="dialog"
+  aria-labelledby="addMemberProjectModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form *ngIf="treeUsers" #addMemberProjectForm="ngForm" class="form-horizontal" id="frm_add_Member_project"
+        novalidate (ngSubmit)="save()">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="close()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">
+            <span>项目成员</span>
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-3">
+              <ul class="nav nav-tabs tabs-left">
+                <li *ngFor="let role of treeUsers; let i = index" [ngClass]="{'active': i == 0}">
+                  <a [href]="'#tab_'+i" data-toggle="tab"> {{role.name}} </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-9">
+              <div class="tab-content">
+                <div *ngFor="let role of treeUsers; let i = index" class="tab-pane" [ngClass]="{'active': i == 0}" [id]="'tab_'+i">
+                    <label *ngFor="let user of role.children" class="mt-checkbox mt-checkbox-outline">
+                        <input [name]="'user'+user.id" type="checkbox" [(ngModel)]="user.isSelected"> {{user.name}}
+                        <span></span>
+                    </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button [disabled]="saving" type="button" class="btn btn-default waves-effect" (click)="close()">
+            取消
+          </button>
+          <button [disabled]="!addMemberProjectForm.form.valid || saving" type="submit" class="btn btn-primary waves-effect">
+            <i *ngIf="saving" class=""></i>保存
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

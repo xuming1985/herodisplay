@@ -1,5 +1,5 @@
-import { Observable, of, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AppConsts } from '../AppConsts';
 
 
@@ -59,6 +59,12 @@ export class PagedInput {
 export class BItem {
     id: number;
     name: string;
-    createUser: string;
-    createTime: Date;
+    desc: string;
+}
+
+export class TreeItem {
+    id: number;
+    name: string;
+    isSelected: boolean = false;
+    children: TreeItem[];
 }

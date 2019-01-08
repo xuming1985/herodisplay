@@ -45,6 +45,10 @@ h4 {
     width: 74px;
 }
 
+.swal2-actions button{
+    font-size: 14px !important;
+}
+
 .herolist-box {
     margin-bottom: 50px;
     padding: 35px 28px;

@@ -2,6 +2,7 @@
 using GameDisplay.App.Models;
 using GameDisplay.Dto;
 using GameDisplay.Service;
+using System.Collections.Generic;
 using System.Web.Http;
 
 namespace GameDisplay.App.Controllers
@@ -22,5 +23,12 @@ namespace GameDisplay.App.Controllers
             return result;
         }
 
+        [HttpGet]
+        [Route("getroletree")]
+        public List<TreeItem> GetRoleTree()
+        {
+            BUesrService service = new BUesrService();
+            return service.GetRoleTree();
+        }
     }
 }

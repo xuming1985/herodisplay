@@ -46,6 +46,14 @@ namespace GameDisplay.App.Controllers
             return service.UpdateMembers(dto);
         }
 
+        [HttpDelete]
+        [Route("removemember/{id}")]
+        public bool RemoveMember(int id)
+        {
+            BProjectService service = new BProjectService();
+            return service.RemoveMember(id);
+        }
+
         [HttpPost]
         [Route("addmodule")]
         public bool AddModule(BProjectModuleDto dto)

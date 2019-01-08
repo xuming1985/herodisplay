@@ -29,6 +29,7 @@ namespace GameDisplay.Service
                     input.Total = query.Count();
 
                     var projects = query.Skip(input.Skip).Take(input.PageSize).ToList();
+                    var roles = db.BRoles.ToList();
                     foreach (var item in projects)
                     {
                         var itemDto = new BProjectDto()
@@ -40,9 +41,9 @@ namespace GameDisplay.Service
                             CreateUser = item.CreateUser,
                             CreateTime = item.CreateTime,
                         };
-                        itemDto.Modules = db.BProjectModules.Where(o => o.ProjectId == itemDto.Id).Select(p => new BItem() { Id = p.Id, Name = p.Name, CreateUser = p.CreateUser, CreateTime = p.CreateTime}).ToList();
+                        itemDto.Modules = db.BProjectModules.Where(o => o.ProjectId == itemDto.Id).Select(p => new BItem() { Id = p.Id, Name = p.Name}).ToList();
 
-                        itemDto.Members = db.BUsers.Join(db.BUserProjects.Where(o => o.Id == itemDto.Id), a => a.Id, b => b.UserId, (a, b) => new BItem() {Id=a.Id, Name= a.RealName, CreateUser = b.CreateUser, CreateTime=b.CreateTime }).ToList();
+                        itemDto.Members = db.BUsers.Join(db.BUserProjects.Where(o => o.ProjectId == itemDto.Id), a => a.Id, b => b.UserId, (a, b) => new BItem() {Id=a.Id, Name= a.RealName }).ToList();
 
                         resultData.Add(itemDto);
                     }
@@ -160,6 +161,32 @@ namespace GameDisplay.Service
         }
 
         /// <summary>
+        /// 删除项目成员
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public bool RemoveMember(int id)
+        {
+            try
+            {
+                using (var db = new GameDataContext())
+                {
+                    var entity = db.BUserProjects.FirstOrDefault(o => o.Id == id);
+                    if (entity != null)
+                    {
+                        db.BUserProjects.Remove(entity);
+                        return db.SaveChanges() > 0;
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// 修改项目模块
         /// </summary>
         /// <param name="dto"></param>
@@ -202,6 +229,7 @@ namespace GameDisplay.Service
                     var entity = db.BProjectModules.FirstOrDefault(o => o.Id == id);
                     if (entity != null)
                     {
+                        db.BProjectModules.Remove(entity);
                         return db.SaveChanges() > 0;
                     }
                     return true;

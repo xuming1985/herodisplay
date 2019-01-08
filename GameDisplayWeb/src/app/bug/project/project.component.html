@@ -20,7 +20,7 @@
           <thead>
             <tr>
               <th style="width:50px"> # </th>
-              <th> 项目名称 </th>
+              <th style="width:180px"> 项目名称 </th>
               <th> 项目描述 </th>
               <th> 模块 </th>
               <th> 成员 </th>
@@ -32,14 +32,14 @@
               <td>{{start + i + 1}}</td>
               <td>{{item.name}}</td>
               <td>{{item.desc}}</td>
-              <td><span *ngFor="let module of item.modules" class="label label-sm label-danger">{{module.name}} <a (click)="removeModule(module)"><i class="fa fa-times"></i></a></span> </td>
-              <td>{{item.members.length}}</td>
+              <td><span *ngFor="let module of item.modules" class="label label-sm label-primary">{{module.name}} <a (click)="removeModule(module)"><i class="fa fa-times"></i></a></span> </td>
+              <td><span *ngFor="let member of item.members" class="label label-sm label-info">{{member.name}} <a (click)="removeMember(member)"><i class="fa fa-times"></i></a></span> </td>
               <td style="padding:5px 10px">
                 <button type="button" class="btn btn-success btn-xs btn-cell" (click)="editProject(item)"><i class="fa fa fa-edit"></i>&nbsp;编辑&nbsp;</button>
-                <button type="button" class="btn btn-success btn-xs btn-cell" (click)="addModule(item)"><i class="fa fa fa-edit"></i>&nbsp;添加模块&nbsp;</button>
+                <button type="button" class="btn btn-primary btn-xs btn-cell" (click)="addModule(item)"><i class="fa fa fa-edit"></i>&nbsp;添加模块&nbsp;</button>
                 <div style="height:5px"></div>
                 <button type="button" class="btn btn-danger btn-xs btn-cell" (click)="delete(item)"><i class="fa fa-remove"></i>&nbsp;删除&nbsp;</button>
-                <button type="button" class="btn btn-success btn-xs btn-cell" (click)="addMember(item)"><i class="fa fa fa-edit"></i>&nbsp;添加成员&nbsp;</button>
+                <button type="button" class="btn btn-info btn-xs btn-cell" (click)="addMember(item)"><i class="fa fa fa-edit"></i>&nbsp;添加成员&nbsp;</button>
               </td>
             </tr>
           </tbody>

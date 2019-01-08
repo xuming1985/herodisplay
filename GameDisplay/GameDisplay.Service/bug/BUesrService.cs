@@ -79,6 +79,45 @@ namespace GameDisplay.Service
         }
 
         /// <summary>
+        /// 以角色分组 获取所有用户
+        /// </summary>
+        /// <returns></returns>
+        public List<TreeItem> GetRoleTree()
+        {
+            List<TreeItem> resultData = new List<TreeItem>();
+            using (var db = new GameDataContext())
+            {
+                try
+                {
+                    var roles = db.BRoles.OrderBy(o => o.Id).ToList();
+                    var users = db.BUsers.OrderBy(o => o.Id).GroupBy(o=>o.Role);
+                    foreach (var group in users)
+                    {
+                        var role = roles.FirstOrDefault(o=>o.Id == group.Key);
+                        if (role != null)
+                        {
+                            var treeItem = new TreeItem();
+                            treeItem.Id = role.Id;
+                            treeItem.Name = role.Name;
+                            treeItem.Children = group.ToList().Select(user => new TreeItem()
+                            {
+                                Id = user.Id,
+                                Name = user.RealName,
+                            }).ToList();
+                            resultData.Add(treeItem);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+                return resultData;
+            }
+        }
+
+        /// <summary>
         /// 删除用户基本信息， 状态设置未False
         /// </summary>
         /// <param name="dto"></param>
