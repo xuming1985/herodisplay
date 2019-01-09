@@ -18,41 +18,8 @@
                             <div class="form-group">
                                 <label for="realName" class="control-label col-sm-3">真实姓名</label>
                                 <div class="col-sm-8">
-                                    <input id="realName" type="text" name="realName" [(ngModel)]="user.realName"
+                                    <input id="realName" type="text" name="realName" [(ngModel)]="model.realName"
                                         required maxlength="12" minlength="2" class="validate form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="account" class="control-label col-sm-3">用户账号</label>
-                                <div class="col-sm-8">
-                                    <input id="account" type="text" name="account" [(ngModel)]="user.account" required
-                                        maxlength="32" minlength="2" class="validate form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="password" class="control-label col-sm-3">账号密码</label>
-                                <div class="col-sm-8">
-                                    <input id="password" type="text" name="password" [(ngModel)]="user.password"
-                                        required maxlength="32" minlength="6" class="validate form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="password2" class="control-label col-sm-3">密码确认</label>
-                                <div class="col-sm-8">
-                                    <input id="password2" type="text" name="password2" [(ngModel)]="user.password2"
-                                        required maxlength="32" minlength="6" class="validate form-control">
                                 </div>
                             </div>
                         </div>
@@ -62,7 +29,7 @@
                             <div class="form-group">
                                 <label for="email" class="control-label col-sm-3">用户邮箱</label>
                                 <div class="col-sm-8">
-                                    <input id="email" type="text" name="email" [(ngModel)]="user.email" required
+                                    <input id="email" type="text" name="email" [(ngModel)]="model.email" required
                                         maxlength="32" minlength="10" class="validate form-control">
                                 </div>
                             </div>
@@ -73,7 +40,7 @@
                             <div class="form-group">
                                 <label for="telephone" class="control-label col-sm-3">用户电话</label>
                                 <div class="col-sm-8">
-                                    <input id="telephone" type="text" name="telephone" [(ngModel)]="user.telephone"
+                                    <input id="telephone" type="text" name="telephone" [(ngModel)]="model.telephone"
                                         required maxlength="32" minlength="11" class="validate form-control">
                                 </div>
                             </div>
@@ -84,13 +51,8 @@
                             <div class="form-group">
                                 <label for="role" class="control-label col-sm-3">用户角色</label>
                                 <div class="col-sm-8">
-                                    <select id="role" type="text" name="role" [(ngModel)]="user.role" class="validate form-control">
-                                        <option value="Manager">项目经理</option>
-                                        <option value="ProductOwner">产品负责人</option>
-                                        <option value="Developer_TL">开发主管</option>
-                                        <option value="Developer">开发人员</option>
-                                        <option value="Tester_TL">测试主管</option>
-                                        <option value="Tester">测试人员</option>
+                                    <select id="role" type="text" name="role" [(ngModel)]="model.role" class="validate form-control">
+                                        <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
                                     </select>
                                 </div>
                             </div>

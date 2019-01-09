@@ -1,24 +1,35 @@
 import { Component, ViewChild, OnInit, Output, EventEmitter } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'ngx-bootstrap';
 import { finalize } from 'rxjs/operators';
-import { UserService, BUserDto, UserForEditDto} from '../../../shared/service-proxy/bug.service'
+import { AppComponentBase } from '../../../shared/app-component-base';
+import { BItem } from '../../../shared/service-proxy/base.service'
+import { UserService, BUserDto, UserForEditDto } from '../../../shared/service-proxy/bug.service'
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css']
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent extends AppComponentBase implements OnInit {
 
   @ViewChild('editUserModal') modal: ModalDirective;
   @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
 
   saving: boolean = false;
   model: UserForEditDto = null;
+  roles: BItem[] = [];
 
-  constructor(private service: UserService) { }
+  constructor(private service: UserService,
+    public toastr: ToastrService) {
+    super(toastr);
+  }
 
   ngOnInit() {
+    this.service.getRoles()
+      .subscribe(items => {
+        this.roles = items;
+      });
   }
 
   save(): void {
@@ -27,20 +38,21 @@ export class EditUserComponent implements OnInit {
     this.service.update(this.model)
       .pipe(finalize(() => { this.saving = false; }))
       .subscribe(() => {
-        // this.notify.info(this.l('SavedSuccessfully'));
+        this.notify("success", "提示", "保存成功！")
         this.close();
         this.modalSave.emit(null);
       });
   }
 
-  show(id: number): void {
-    this.service.getUserForEdit(id)
-    .pipe(finalize(() => {
-        this.modal.show();
-    }))
-    .subscribe((result: UserForEditDto) => {
-        this.model = result;
-    });
+  show(user: BUserDto): void {
+
+    this.model = new UserForEditDto();
+    this.model.id = user.id;
+    this.model.realName = user.realName;
+    this.model.email = user.email;
+    this.model.telephone = user.telephone;
+    this.model.role = user.role;
+    this.modal.show();
   }
 
   close(): void {

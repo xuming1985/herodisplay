@@ -30,7 +30,7 @@ namespace GameDisplay.Service
                         {
                             Id = user.Id,
                             RealName = user.RealName,
-                            Role = db.BRoles.FirstOrDefault(o=>o.Id == user.Role).Name
+                            RoleName = db.BRoles.FirstOrDefault(o=>o.Id == user.Role).Name
                         };
                     }
 
@@ -66,7 +66,8 @@ namespace GameDisplay.Service
                         RealName = user.RealName,
                         Email = user.Email,
                         Telephone = user.Telephone,
-                        Role = db.BRoles.FirstOrDefault(o => o.Id == user.Role).Name
+                        Role = user.Role,
+                        RoleName = db.BRoles.FirstOrDefault(o => o.Id == user.Role).Name
                     }).ToList();
                 }
                 catch (Exception ex)
@@ -114,6 +115,121 @@ namespace GameDisplay.Service
                 }
 
                 return resultData;
+            }
+        }
+
+        /// <summary>
+        /// 修改用户信息用户
+        /// </summary>
+        /// <returns></returns>
+        public bool Update(BUserForEditDto dto)
+        {
+            using (var db = new GameDataContext())
+            {
+                try
+                {
+                    var entity = db.BUsers.FirstOrDefault(o => o.Id == dto.Id);
+                    if (entity != null)
+                    {
+                        entity.RealName = dto.RealName;
+                        entity.Email = dto.Email;
+                        entity.Telephone = dto.Telephone;
+                        entity.Role = dto.Role;
+                        return db.SaveChanges() > 0;
+                    }
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 修改用户密码
+        /// </summary>
+        /// <returns></returns>
+        public OperateResult UpdatePassword(PasswordResetDto dto)
+        {
+            using (var db = new GameDataContext())
+            {
+                try
+                {
+                    //两次密码不一致
+                    if (dto.New != dto.NewConfirm)
+                    {
+                        return new OperateResult(false) { Message = "两次密码不一致" };
+                    }
+
+                    string encryptPassword = Cryptogram.MD5Encrypt64(dto.Old);
+                    var entity = db.BUsers.FirstOrDefault(o => o.Id == dto.UserId && o.Password == encryptPassword);
+                    if (entity != null)
+                    {
+                        entity.Password = Cryptogram.MD5Encrypt64(dto.New);
+
+                        var result = new OperateResult();
+                        result.Success = db.SaveChanges() > 0;
+                        if (result.Success == false)
+                        {
+                            result.Message = "不允许保存";
+                        }
+
+                        return result;
+                    }
+                    else
+                    {
+                        //旧密码不正确
+                        return new OperateResult(false) { Message = "旧密码不正确" };
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return new OperateResult(false) { Message = "服务异常" };
+                }
+            }
+        }
+
+        /// <summary>
+        /// 重设用户密码
+        /// </summary>
+        /// <returns></returns>
+        public OperateResult ResetPassword(PasswordResetDto dto)
+        {
+            using (var db = new GameDataContext())
+            {
+                try
+                {
+                    //两次密码不一致
+                    if (dto.New != dto.NewConfirm)
+                    {
+                        return new OperateResult(false) { Message = "两次密码不一致" };
+                    }
+
+                    var entity = db.BUsers.FirstOrDefault(o => o.Id == dto.UserId);
+                    if (entity != null)
+                    {
+                        entity.Password = entity.Password = Cryptogram.MD5Encrypt64(dto.New);
+
+                        var result = new OperateResult();
+                        result.Success = db.SaveChanges() > 0;
+                        if (result.Success == false)
+                        {
+                            result.Message = "不允许保存";
+                        }
+
+                        return result;
+                    }
+                    else
+                    {
+                        //旧密码不正确
+                        return new OperateResult(false) { Message = "当前用户不存在" };
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return new OperateResult(false) { Message = "服务异常" };
+                }
             }
         }
 

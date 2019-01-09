@@ -16,7 +16,9 @@ namespace GameDisplay.Dto
 
         public string Telephone { get; set; }
 
-        public string Role { get; set; }
+        public int Role { get; set; }
+
+        public string RoleName { get; set; }
 
         public string CreateUser { get; set; }
 

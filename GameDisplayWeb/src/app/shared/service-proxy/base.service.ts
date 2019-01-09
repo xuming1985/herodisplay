@@ -68,3 +68,8 @@ export class TreeItem {
     isSelected: boolean = false;
     children: TreeItem[];
 }
+
+export class OperateResult {
+    success: boolean;
+    message: string;
+}

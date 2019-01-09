@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { BaseService, PagedInput, BItem, TreeItem } from './base.service';
+import { BaseService, PagedInput, BItem, TreeItem, OperateResult } from './base.service';
 
 @Injectable()
 export class BugService extends BaseService {
@@ -57,6 +57,19 @@ export class UserService extends BaseService {
     );
   }
 
+  getRoles(): Observable<BItem[]> {
+    let url = this.baseUrl + "/api/role";
+
+    let options_ = {
+      headers: this.getHttpHeaders()
+    };
+
+    return this.http.get<BItem[]>(url, options_).pipe(
+      tap(item => console.log("get all roles")),
+      catchError(this.handleError<BItem[]>("getAll roles"))
+    );
+  }
+
   create(user: BUserDto): Observable<boolean> {
     let url = this.baseUrl + "/api/user/create";
 
@@ -95,6 +108,32 @@ export class UserService extends BaseService {
       catchError(this.handleError<boolean>("update user"))
     );
   }
+
+  resetPassword(model: PasswordResetDto): Observable<OperateResult> {
+    let url = this.baseUrl + "/api/user/resetpassword";
+
+    let options_ = {
+      headers: this.getHttpHeaders()
+    };
+
+    return this.http.post<OperateResult>(url, model, options_).pipe(
+      tap(item => console.log("reset user password")),
+      catchError(this.handleError<OperateResult>("reset user password"))
+    );
+  }
+
+  delete(id: number): Observable<boolean> {
+    let url = this.baseUrl + "/api/user/delete/" + id;
+
+    let options_ = {
+      headers: this.getHttpHeaders()
+    };
+
+    return this.http.delete<boolean>(url, options_).pipe(
+      tap(item => console.log("delete user")),
+      catchError(this.handleError<boolean>("delete user"))
+    );
+  }
 }
 
 @Injectable()
@@ -118,7 +157,7 @@ export class ProjectService extends BaseService {
 
   save(project: BProjectDto): Observable<boolean> {
     let url = this.baseUrl + "/api/project/create";
-    if(project.id>0){
+    if (project.id > 0) {
       url = this.baseUrl + "/api/project/update";
     }
 
@@ -185,7 +224,7 @@ export class ProjectService extends BaseService {
   }
 
   delete(id: number): Observable<boolean> {
-    let url = this.baseUrl + "/api/project/delete/"+ id;
+    let url = this.baseUrl + "/api/project/delete/" + id;
 
     let options_ = {
       headers: this.getHttpHeaders()
@@ -222,13 +261,18 @@ export class BUserDto {
   realName: string;
   email: string;
   telephone: string;
-  role: string;
+  role: number;
+  roleName: string;
   createUser: string;
   createTime: Date;
 }
 
 export class UserForEditDto {
-  user: BUserDto | undefined;
+  id: number;
+  realName: string;
+  email: string;
+  telephone: string;
+  role: number;
 }
 
 export class BProjectQueryInput extends PagedInput {
@@ -251,10 +295,17 @@ export class BProjectDto {
   members: BItem[] = [];
 }
 
-export class BProjectModuleDto{
+export class BProjectModuleDto {
   id: number;
-  projectId:number;
+  projectId: number;
   name: string;
   desc: string;
   createUser: string;
+}
+
+export class PasswordResetDto {
+  userId: number;
+  old: string;
+  new: string;
+  newConfirm: string;
 }

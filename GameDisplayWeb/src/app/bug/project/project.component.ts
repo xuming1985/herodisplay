@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import swal from 'sweetalert2';
 
 import { PagedInput, BItem } from '../../shared/service-proxy/base.service'
-import { ProjectService, BProjectQueryInput, BProjectDto, BProjectModuleDto } from '../../shared/service-proxy/bug.service'
+import { ProjectService, BProjectQueryInput, BProjectDto } from '../../shared/service-proxy/bug.service'
 import { PagedListingComponentBase } from '../../shared/pagination/paged-listing-component-base';
 
 import { EditProjectComponent } from './edit-project/edit-project.component';

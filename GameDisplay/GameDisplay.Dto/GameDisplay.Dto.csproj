@@ -45,11 +45,14 @@
     <Compile Include="bug\BProjectQueryInput.cs" />
     <Compile Include="bug\BUserDto.cs" />
     <Compile Include="bug\BItem.cs" />
+    <Compile Include="bug\BUserForEditDto.cs" />
     <Compile Include="bug\BUserQueryInput.cs" />
+    <Compile Include="bug\PasswordResetDto.cs" />
     <Compile Include="bug\TreeItem.cs" />
     <Compile Include="bug\UserLoginInfoDto.cs" />
     <Compile Include="bug\LoginInput.cs" />
     <Compile Include="DiagramPoint.cs" />
+    <Compile Include="OperateResult.cs" />
     <Compile Include="PagedInput.cs" />
     <Compile Include="StockMonitorDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

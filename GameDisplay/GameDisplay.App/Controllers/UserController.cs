@@ -30,5 +30,29 @@ namespace GameDisplay.App.Controllers
             BUesrService service = new BUesrService();
             return service.GetRoleTree();
         }
+
+        [HttpPost]
+        [Route("update")]
+        public bool Update(BUserForEditDto dto)
+        {
+            BUesrService service = new BUesrService();
+            return service.Update(dto);
+        }
+
+        [HttpPost]
+        [Route("updatepassword")]
+        public OperateResult UpdatePassword(PasswordResetDto dto)
+        {
+            BUesrService service = new BUesrService();
+            return service.UpdatePassword(dto);
+        }
+
+        [HttpPost]
+        [Route("resetpassword")]
+        public OperateResult ResetPassword(PasswordResetDto dto)
+        {
+            BUesrService service = new BUesrService();
+            return service.ResetPassword(dto);
+        }
     }
 }

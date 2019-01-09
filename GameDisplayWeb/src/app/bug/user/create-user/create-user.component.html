@@ -85,12 +85,7 @@
                                 <label for="role" class="control-label col-sm-3">用户角色</label>
                                 <div class="col-sm-8">
                                     <select id="role" type="text" name="role" [(ngModel)]="user.role" class="validate form-control">
-                                        <option value="Manager">项目经理</option>
-                                        <option value="ProductOwner">产品负责人</option>
-                                        <option value="Developer_TL">开发主管</option>
-                                        <option value="Developer">开发人员</option>
-                                        <option value="Tester_TL">测试主管</option>
-                                        <option value="Tester">测试人员</option>
+                                        <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
                                     </select>
                                 </div>
                             </div>

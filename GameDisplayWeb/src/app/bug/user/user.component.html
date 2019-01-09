@@ -25,20 +25,21 @@
               <th> 角色 </th>
               <th> 电话 </th>
               <th> 邮件 </th>
-              <th style="width:150px"> 操作 </th>
+              <th style="width:220px; min-width: 220px;"> 操作 </th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let user of users; let i = index">
               <td>{{start + i + 1}}</td>
               <td>{{user.account}}</td>
-              <td><a (click)="routeToDetail(user)">{{user.realName}}</a></td>
-              <td>{{user.role}}</td>
+              <td>{{user.realName}}</td>
+              <td>{{user.roleName}}</td>
               <td>{{user.telephone}}</td>
               <td>{{user.email}}</td>
               <td style="padding:5px 10px">
                 <button type="button" class="btn btn-success btn-xs" (click)="editUser(user)"><i class="fa fa fa-edit"></i>&nbsp;编辑&nbsp;</button>
-                <button type="button" class="btn btn-danger btn-xs" (click)="delete()"><i class="fa fa-remove"></i>&nbsp;删除&nbsp;</button>
+                <button type="button" class="btn btn-danger btn-xs" (click)="delete(user)"><i class="fa fa-remove"></i>&nbsp;删除&nbsp;</button>
+                <button type="button" class="btn btn-danger btn-xs" (click)="resetPassowrd(user)"><i class="fa fa-remove"></i>&nbsp;密码重设&nbsp;</button>
               </td>
             </tr>
           </tbody>
@@ -52,3 +53,4 @@
 
 <app-create-user #createUserModal (modalSave)="refresh()"></app-create-user>
 <app-edit-user #editUserModal (modalSave)="refresh()"></app-edit-user>
+<app-reset-password #resetPasswordModal (modalSave)="refresh()"></app-reset-password>

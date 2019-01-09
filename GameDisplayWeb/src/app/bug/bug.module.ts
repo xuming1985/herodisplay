@@ -19,6 +19,7 @@ import { AppSessionService } from '../shared/auth/app-session.service';
 import { EditProjectComponent } from './project/edit-project/edit-project.component';
 import { AddModuleProjectComponent } from './project/add-module-project/add-module-project.component';
 import { AddMemberProjectComponent } from './project/add-member-project/add-member-project.component';
+import { ResetPasswordComponent } from './user/reset-password/reset-password.component';
 
 
 export function appInitializerFactory(injector: Injector) {
@@ -57,7 +58,8 @@ export function appInitializerFactory(injector: Injector) {
     EditUserComponent,
     EditProjectComponent,
     AddModuleProjectComponent,
-    AddMemberProjectComponent
+    AddMemberProjectComponent,
+    ResetPasswordComponent
   ],
   providers: [
     {
