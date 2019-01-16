@@ -9,9 +9,9 @@ import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 export class PaginationComponent implements OnInit {
 
   @Output() pageChanged = new EventEmitter<PagedInput>();
-  private pageInfo: PagedInput = new PagedInput();
-  private pageCount: number;
-  private pageShowInfo: string;
+  pageInfo: PagedInput = new PagedInput();
+  pageCount: number;
+  pageShowInfo: string;
 
   constructor() { }
 
@@ -64,8 +64,8 @@ export class PagedInput {
   page: number;
   pageSize: number;
 
-  constructor(){
-      this.page = 1;
-      this.pageSize = 10;
+  constructor() {
+    this.page = 1;
+    this.pageSize = 10;
   }
 }

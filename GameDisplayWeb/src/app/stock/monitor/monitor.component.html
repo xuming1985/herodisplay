@@ -36,8 +36,8 @@
               <td><a routerLink="/stock/detail/{{monitor.category + monitor.code}}">{{monitor.name}}</a></td>
               <td><a (click)="routeToDetail(monitor)">{{monitor.code}}</a></td>
               <td>{{monitor.currentPrice}}</td>
-              <td [ngClass]="{'red': monitor.floatingPrice<0, 'green': monitor.floatingPrice>0}">{{monitor.floatingPrice}}</td>
-              <td [ngClass]="{'red': monitor.floatingPrice<0, 'green': monitor.floatingPrice>0}">{{monitor.floatingRate}}</td>
+              <td [ngClass]="{'red': monitor.floatingPrice>0, 'green': monitor.floatingPrice<0}">{{monitor.floatingPrice}}</td>
+              <td [ngClass]="{'red': monitor.floatingPrice>0, 'green': monitor.floatingPrice<0}">{{monitor.floatingRate}}</td>
               <td style="padding:5px 10px">
                   <button type="button" class="btn btn-link btn-outline btn-xs"><i class="fa fa-remove"></i>移除</button>
               </td>

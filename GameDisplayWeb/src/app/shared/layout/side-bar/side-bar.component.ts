@@ -18,8 +18,10 @@ export class SideBarComponent implements OnInit {
     ]),
     new MenuItem("问题跟踪", "", "icon-diamond", "", [
       new MenuItem("问题列表", "", "", "/bug/list"),
+      new MenuItem("问题统计", "", "", "/bug/statistics"),
       new MenuItem("用户管理", "", "", "/bug/user"),
-      new MenuItem("项目管理", "", "", "/bug/project")
+      new MenuItem("项目管理", "", "", "/bug/project"),
+      new MenuItem("个人设置", "", "", "/bug/setting"),
     ])
   ];
 

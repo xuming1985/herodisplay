@@ -17,7 +17,7 @@ import { AddModuleProjectComponent } from './add-module-project/add-module-proje
 })
 export class ProjectComponent extends PagedListingComponentBase {
 
-  private projects: BProjectDto[] = [];
+  projects: BProjectDto[] = [];
   private queryInput: BProjectQueryInput = new BProjectQueryInput();
 
   @ViewChild('editProjectModal') editProjectModal: EditProjectComponent;

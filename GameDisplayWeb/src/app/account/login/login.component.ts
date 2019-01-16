@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         if (result) {
           this.setCookie("auth_token", result);
           this._sessionService.init().then(() => {
-            this._router.navigate(['bug', 'list'])
+            this._router.navigate(['bug'])
           })
         }
       });

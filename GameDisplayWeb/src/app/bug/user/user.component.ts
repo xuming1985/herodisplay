@@ -17,7 +17,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 })
 export class UserComponent extends PagedListingComponentBase {
 
-  private users: BUserDto[] = [];
+  users: BUserDto[] = [];
   private queryInput: BUserQueryInput = new BUserQueryInput();
 
   @ViewChild('createUserModal') createUserModal: CreateUserComponent;

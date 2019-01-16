@@ -20,6 +20,9 @@ import { EditProjectComponent } from './project/edit-project/edit-project.compon
 import { AddModuleProjectComponent } from './project/add-module-project/add-module-project.component';
 import { AddMemberProjectComponent } from './project/add-member-project/add-member-project.component';
 import { ResetPasswordComponent } from './user/reset-password/reset-password.component';
+import { HomeComponent } from './home/home.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { SettingComponent } from './setting/setting.component';
 
 
 export function appInitializerFactory(injector: Injector) {
@@ -59,7 +62,10 @@ export function appInitializerFactory(injector: Injector) {
     EditProjectComponent,
     AddModuleProjectComponent,
     AddMemberProjectComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    HomeComponent,
+    StatisticsComponent,
+    SettingComponent
   ],
   providers: [
     {
