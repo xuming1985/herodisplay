@@ -8,9 +8,7 @@ namespace GameDisplay.Dto
 {
     public class UserLoginInfoDto
     {
-        public int Id { get; set; }
-
-        public string Account { get; set; }
+        public BUserDto User { get; set; }
 
         public string[] Roles { get; set; } 
 

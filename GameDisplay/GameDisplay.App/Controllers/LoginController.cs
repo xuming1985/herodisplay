@@ -38,16 +38,18 @@ namespace GameDisplay.App.Controllers
         [Route("GetCurrentLoginInformations")]
         public UserLoginInfoDto GetCurrentLoginInformations()
         {
+            BUesrService service = new BUesrService();
             UserLoginInfoDto result = new UserLoginInfoDto();
             IPrincipal principal = this.User;
             if (principal != null)
             {
                 result = new UserLoginInfoDto();
                 var identity = (ClaimsIdentity)principal.Identity;
-                var claim = identity.Claims.FirstOrDefault(o=>o.Type == ClaimTypes.Name);
-                if (claim != null)
+                var claimId = identity.Claims.FirstOrDefault(o => o.Type == ClaimTypes.NameIdentifier);
+                if (claimId != null)
                 {
-                    result.Account = claim.Value;
+                    int id = int.Parse(claimId.Value);
+                    result .User= service.Query(id);
                 }
             }
 

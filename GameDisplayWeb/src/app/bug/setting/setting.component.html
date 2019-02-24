@@ -1,6 +1,101 @@
 <div class="clearfix">
-    <app-breadcrumb [moduleName]="'问题跟踪'"  [pageName]="'个人设置'" [homeRoute]="'bug'"></app-breadcrumb>
+    <app-breadcrumb [moduleName]="'问题跟踪'" [pageName]="'个人设置'" [homeRoute]="'bug'"></app-breadcrumb>
+
     <div class="portlet light bordered space-top-10">
-        <img src="../../../assets/images/bug/setting.png">
+        <div class="portlet-body form">
+            <form action="#" class="form-horizontal" *ngIf="user">
+                <div class="form-body">
+                    <h4 class="form-section">
+                        <i class="icon-social-dribbble font-green"></i>
+                        <span class="caption-subject font-green bold uppercase">个人资料</span>
+                    </h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-3">姓名</label>
+                                <div class="col-md-9">
+                                    <input name="realName" type="text" class="form-control" placeholder="姓名">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-3">邮件</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="邮件">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-3">电话</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="电话">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label col-md-3"></label>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn green-sharp btn-outline  btn-block sbold uppercase">保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="form-section">
+                        <i class="fa fa-lock font-green"></i>
+                        <span class="caption-subject font-green bold uppercase">密码修改</span>
+                    </h4>
+                    <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">旧密码</label>
+                                    <div class="col-md-9">
+                                        <input name="oldpassword" type="password" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">新密码</label>
+                                    <div class="col-md-9">
+                                        <input name="password" type="password" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">新密码确认</label>
+                                    <div class="col-md-9">
+                                        <input name="password2" type="password" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3"></label>
+                                    <div class="col-md-3">
+                                        <button type="button" class="btn green-sharp btn-outline btn-block sbold uppercase">保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

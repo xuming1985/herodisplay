@@ -16,7 +16,6 @@ export class EditUserComponent extends AppComponentBase implements OnInit {
   @ViewChild('editUserModal') modal: ModalDirective;
   @Output() modalSave: EventEmitter<any> = new EventEmitter<any>();
 
-  saving: boolean = false;
   model: UserForEditDto = null;
   roles: BItem[] = [];
 
@@ -45,13 +44,7 @@ export class EditUserComponent extends AppComponentBase implements OnInit {
   }
 
   show(user: BUserDto): void {
-
-    this.model = new UserForEditDto();
-    this.model.id = user.id;
-    this.model.realName = user.realName;
-    this.model.email = user.email;
-    this.model.telephone = user.telephone;
-    this.model.role = user.role;
+    this.model = new UserForEditDto(user);
     this.modal.show();
   }
 

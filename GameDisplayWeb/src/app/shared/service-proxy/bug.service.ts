@@ -239,8 +239,7 @@ export class ProjectService extends BaseService {
 }
 
 export class UserLoginInfoDto {
-  id: number;
-  account: string;
+  user: BUserDto;
   roles: number[];
   isAdmin: boolean;
 }
@@ -273,6 +272,17 @@ export class UserForEditDto {
   email: string;
   telephone: string;
   role: number;
+
+  constructor(user: BUserDto) {
+    if(user){
+      this.id = user.id;
+      this.realName = user.realName;
+      this.email = user.email;
+      this.telephone = user.telephone;
+      this.role = user.role;
+    }
+    
+  }
 }
 
 export class BProjectQueryInput extends PagedInput {

@@ -1,7 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
 
 export abstract class AppComponentBase {
-
+    saving: boolean = false;
     constructor(public toastr: ToastrService) {
 
     }

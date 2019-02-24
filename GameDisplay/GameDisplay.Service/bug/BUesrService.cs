@@ -23,14 +23,47 @@ namespace GameDisplay.Service
                 using (var db = new GameDataContext())
                 {
                     string encryptPassword = Cryptogram.MD5Encrypt64(input.Password);
-                    var user = db.BUsers.FirstOrDefault(o => o.Account == input.Account && o.Password == encryptPassword);
+                    var user = db.BUsers.FirstOrDefault(o => o.Account == input.Account && o.Password == encryptPassword && o.IsActive == true);
+                    if (user != null)
+                    {
+                        result = new BUserDto()
+                        {
+                            Id = user.Id,
+                            RealName = user.RealName
+                        };
+                    }
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// 加载登录账号的初始信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public BUserDto Query(int id)
+        {
+            BUserDto result = null;
+            try
+            {
+                using (var db = new GameDataContext())
+                {
+                    var user = db.BUsers.FirstOrDefault(o => o.Id == id && o.IsActive == true);
                     if (user != null)
                     {
                         result = new BUserDto()
                         {
                             Id = user.Id,
                             RealName = user.RealName,
-                            RoleName = db.BRoles.FirstOrDefault(o=>o.Id == user.Role).Name
+                            RoleName = db.BRoles.FirstOrDefault(o => o.Id == user.Role).Name,
+                            Email = user.Email,
+                            Telephone = user.Telephone
                         };
                     }
 

@@ -11,7 +11,7 @@ namespace GameDisplay.Test
 
         public void TestMonitor()
         {
-            var list = new List<string>() { "sh000001", "sz000952"};
+            var list = new List<string>() { "sh000001", "sz000952", "sz600535" };
             
             foreach (var l in list)
             {
